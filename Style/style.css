@@ -166,11 +166,12 @@ nav .content .links{
     align-items: center;
     justify-content: center;
 }
+.landing h2 {
+    font-family: 'YourCustomFont', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 32px; /* Adjust the font size as needed */
+    margin: 10px 0; /* Adjust the margin as needed */
+}
 
-    .landing h2 {
-        font-size: 32px;
-        margin: 10px 0; /* Adjust as needed */
-    }
 
 
 .custom-button {
