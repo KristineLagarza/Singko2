@@ -4,14 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Singko Sirgao Tour</title>
+    <title>Singko Siargao Tour</title>
     <link rel="stylesheet" href="Style/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 </head>
 
 <style>
-
     /* Add this CSS for the slideshow */
+    body {
+        margin: 0;
+        padding: 0;
+        background: url("Images/bg1.jpg") center/cover no-repeat;
+        font-family: Arial, sans-serif;
+    }
+
     .slideshow-container {
         position: relative;
         max-width: 100%;
@@ -23,10 +29,26 @@
         width: 100%; /* Set the width to 100% to make them the same width as the container */
         max-height: 600px; /* Set the maximum height to control the size */
     }
+    /* Style for the landing content */
+    .landing {
+        text-align: center;
+        background: rgba(0, 0, 0, 0.7); /* Add a semi-transparent black background to make text readable */
+        padding: 20px;
+    }
 
+        .landing h2 {
+            color: #fff; /* Text color */
+        }
 
+    .custom-button {
+        background: #007BFF; /* Button background color */
+        color: #fff; /* Button text color */
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
 </style>
-
 <body>
 
     <!-- Navigation Bar -->
@@ -70,6 +92,7 @@
 
         <!-- Slideshow Container -->
         <div class="slideshow-container">
+            <img src="Images/siar.jpg" class="mySlides" />
             <img src="Images/siar-head.jpg" class="mySlides" />
             <img src="Images/cloud9.jpg" class="mySlides" />
             <img src="Images/nakedisland.jpg" class="mySlides" />
@@ -85,7 +108,7 @@
             <img src="Images/blue.jpg" class="mySlides" />
             <img src="Images/cave.jpg" class="mySlides" />
             <img src="Images/corre.jpg" class="mySlides" />
-           
+
 
             <!-- Add more images as needed -->
         </div>
