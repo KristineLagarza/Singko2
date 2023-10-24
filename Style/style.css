@@ -150,20 +150,43 @@ nav .content .links{
 
 
 /* --------------------------------------------------- Landing Page ----------------------------------------------------*/
-.landing{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  z-index: -1;
-  padding: 0 20px;
-  text-align: center;
-  transform: translate(-50%, -50%);
+/* style.css */
+
+.landing {
+    background-image: url('Images/siar-head.jpg'); /* Replace with your image file path */
+    background-size: cover;
+    background-position: center;
+    background-color: aquamarine;
+    color: black;
+    text-align: center;
+    padding: 50px;
+    height: 100vh; /* Make the landing page cover the entire viewport height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
-.landing h2{
-  font-size: 45px;
-  margin: 5px 0;
+
+    .landing h2 {
+        font-size: 32px;
+        margin: 10px 0; /* Adjust as needed */
+    }
+
+
+.custom-button {
+    background: #006eff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
+
+    .custom-button:hover {
+        background: #0053c6; /* Change the color on hover */
+    }
 
 
 /* ---------------------------------------------------- Media Query ---------------------------------------------------*/

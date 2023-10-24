@@ -4,7 +4,9 @@ document.addEventListener("DOMContentLoaded", function () {
     button.addEventListener("click", function () {
       window.location.href = "sample.html";
     });
-  });
+});
+
+
 
   
   
