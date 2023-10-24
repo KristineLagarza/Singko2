@@ -1,0 +1,194 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="Style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+
+<style>
+    /* Add this CSS for the slideshow */
+    .slideshow-container {
+        position: relative;
+        max-width: 100%;
+        max-height: 200%;
+        margin: auto;
+        overflow: hidden; /* Hide the overflow content */
+    }
+
+    .slideshow-content {
+        display: flex; /* Use flex to create a horizontal layout */
+        transition: transform 1s; /* Smoothly transition the transform property for sliding */
+    }
+
+    .mySlides {
+        width: 100%; /* Set the width to 100% to make them the same width as the container */
+        max-height: 500px; /* Set the maximum height to control the size */
+    }
+
+    /* Style for Contact Container */
+    .contact-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 70vh; /* You can adjust the height as needed */
+    }
+
+    /* Style for Contact Us Section */
+    .contact-us {
+        background-color: #f0f0f0;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center; /* Center-align the content */
+    }
+
+        .contact-us h2 {
+            font-size: 28px; /* Increase the font size */
+            color: #0077b6;
+        }
+
+        .contact-us p {
+            font-size: 18px; /* Increase the font size */
+            margin: 10px 0;
+        }
+
+        .contact-us ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .contact-us li {
+            font-size: 16px; /* Increase the font size */
+            margin: 5px 0;
+        }
+
+    .contact-links {
+        list-style-type: none;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+        .contact-links li {
+            font-size: 18px;
+            margin: 10px 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-links i {
+            margin-right: 10px;
+        }
+</style>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="navigation">
+        <nav>
+            <input type="checkbox" id="show-search">
+            <input type="checkbox" id="show-menu">
+            <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
+            <div class="content">
+                <div class="logo"><a href="#">SINGKO</a></div>
+                <ul class="links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li>
+                        <a href="#" class="desktop-link">Destinations</a>
+                        <input type="checkbox" id="show-destinations">
+                        <label for="show-destinations">Destinations</label>
+                        <ul>
+                            <li><a href="#">Drop Menu 1</a></li>
+                            <li><a href="#">Drop Menu 2</a></li>
+                            <li><a href="#">Drop Menu 3</a></li>
+                            <li><a href="#">Drop Menu 4</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label>
+            <form action="#" class="search-box">
+                <input type="text" placeholder="Type Something to Search..." required>
+                <button type="submit" class="go-icon"><i class="fas fa-long-arrow-alt-right"></i></button>
+            </form>
+        </nav>
+    </div>
+
+    <br>
+    <div class="contact-container">
+        <div class="contact-us">
+            <h2>Contact Us</h2>
+            <p>If you have any questions or need more information, please feel free to contact us:</p>
+            <ul>
+                <li>Email: singkotours@gmail.com</li>
+                <li>Phone: +63 977 404 1236</li>
+                <li>Address: Bakakeng, Drive Baguio City</li>
+            </ul>
+            <ul class="contact-links">
+                <li><i class="fab fa-facebook"></i> <a href="https://www.facebook.com/singko.tours">Facebook</a></li>
+                <li><i class="fab fa-twitter"></i> <a href="https://twitter.com/singkotours">Twitter</a></li>
+                <li><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/singkotours/">Instagram</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Landing Page -->
+    <!-- Slideshow Container -->
+    <div class="slideshow-container">
+        <img src="Images/siar-head.jpg" class="mySlides" />
+        <img src="Images/cloud9.jpg" class="mySlides" />
+        <img src="Images/nakedisland.jpg" class="mySlides" />
+        <img src="Images/sugba.jpg" class="mySlides" />
+        <img src="Images/sohotoon.jpg" class="mySlides" />
+        <img src="Images/guyam.jpg" class="mySlides" />
+        <img src="Images/daku.jpg" class="mySlides" />
+        <img src="Images/pacifico.jpg" class="mySlides" />
+        <img src="Images/rockpools.jpg" class="mySlides" />
+        <img src="Images/secret.jpg" class="mySlides" />
+        <img src="Images/taktak.jpg" class="mySlides" />
+        <img src="Images/alegria.jpg" class="mySlides" />
+        <img src="Images/blue.jpg" class="mySlides" />
+        <img src="Images/cave.jpg" class="mySlides" />
+        <img src="Images/corre.jpg" class="mySlides" />
+        <img src="Images/maasin.jpg" class="mySlides" />
+
+        <!-- Add more images as needed -->
+    </div>
+
+
+    <script src="script.js"></script>
+    <script>
+        // JavaScript for Image Slideshow
+        var slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+
+            // Hide all images
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+
+            // Increment slideIndex and reset if it exceeds the number of images
+            slideIndex++;
+            if (slideIndex > slides.length) {
+                slideIndex = 1;
+            }
+
+            // Display the current image
+            slides[slideIndex - 1].style.display = "block";
+
+            // Change image every 3 seconds (3000 milliseconds)
+            setTimeout(showSlides, 2000);
+        }
+    </script>
+</body>
+
+</html>
