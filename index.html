@@ -39,13 +39,19 @@
             color: #fff; /* Text color */
         }
 
-    .custom-button {
-        background: #007BFF; /* Button background color */
-        color: #fff; /* Button text color */
-        border: none;
+  .custom-button {
+        background: transparent; /* Transparent background */
+        color: #fff; /* White text color */
+        border: 2px solid #fff; /* White border */
         padding: 10px 20px;
         border-radius: 5px;
         cursor: pointer;
+        transition: background 0.3s, color 0.3s; /* Transition effect for background and text color */
+    }
+
+    .custom-button:hover {
+        background: #fff; /* White background on hover */
+        color: #007BFF; /* Blue text color on hover */
     }
 </style>
 <body>
