@@ -2,192 +2,130 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Singko Siargao Tour</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <style>
-    @font-face {
-      font-family: bara;
-      src: url(../Resources/BARABARA.otf);
-    }
-
-    @font-face {
-      font-family: mont-reg;
-      src: url(../Resources/Montserrat-Regular.otf)
-    }
-
-    .navigation {
-      height: 70px;
-      background-color: #333;
-      color: #fff;
-      text-align: center;
-      line-height: 40px;
-      width: 100%;
-    }
-
-    .navigation nav {
-      position: relative;
-      display: flex;
-      max-width: calc(100% - 200px);
-      margin: 0 auto;
-      height: 70px;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    nav .content {
-      display: flex;
-      align-items: center;
-    }
-
-    nav .content .links {
-      margin-left: 60px;
-      display: flex;
-    }
-
-    .content .logo a {
-      color: #fff;
-      font-size: 30px;
-      font-weight: 600;
-      font-family: bara;
-    }
-
-    .content .links li {
-      list-style: none;
-      line-height: 70px;
-    }
-
-    .content .links li a,
-    .content .links li label {
-      color: #fff;
-      font-size: 18px;
-      font-family: mont-reg;
-      font-weight: 500;
-      padding: 9px 17px;
-      border-radius: 5px;
-      transition: all 0.3s ease;
-    }
-
-    .content .links li label {
-      display: none;
-    }
-
-    .content .links li a:hover,
-    .content .links li label:hover {
-      background: #323c4e;
-    }
-
-    .navigation input[type="checkbox"] {
-      display: none;
-    }
-
-    .navigation .search-container {
-      float: right;
-    }
-
-    .navigation input[type=text] {
-      padding: 6px;
-      font-family: mont-reg;
-      font-size: 14px;
-      border: none;
-    }
-
-    .navigation .search-container button {
-      float: right;
-      padding: 6px;
-      margin-right: 8px;
-      background: #ddd;
-      font-size: 14px;
-      font-family: mont-reg;
-      border: none;
-      cursor: pointer;
-    }
-
-    .navigation .search-container button:hover {
-      background: #ccc;
-    }
-
-    .content .links ul {
-      position: absolute;
-      background: #171c24;
-      top: 80px;
-      z-index: -1;
-      opacity: 0;
-      visibility: hidden;
-    }
-
-    .content .links li:hover>ul {
-      top: 70px;
-      opacity: 1;
-      visibility: visible;
-      transition: all 0.3s ease;
-    }
-
-    .content .links ul li a {
-      display: block;
-      width: 100%;
-      line-height: 30px;
-      border-radius: 0px !important;
-    }
-
-    .content .links ul ul {
-      position: absolute;
-      top: 0;
-      right: calc(-100% + 8px);
-    }
-
-    .content .links ul li {
-      position: relative;
-    }
-
-    .content .links ul li:hover ul {
-      top: 0;
-    }
-
-    html,
-    body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-
-    #map {
-      height: calc(96vh - 40px);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Singko Siargao Tour</title>
+    <link rel="stylesheet" href="Style/style.css">
 </head>
 
 <body>
-  <!-- Navigation Bar -->
-  <div class="navigation">
-    <nav>
-      <input type="checkbox" id="show-search">
-      <input type="checkbox" id="show-menu">
-      <div class="content">
-        <div class="logo"><a href="#">SINGKO</a></div>
-        <ul class="links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="destination.html">Destination</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div class="search-container">
-        <form action="#">
-          <input type="text" placeholder="Search.." name="search">
-          <button type="submit">Search</button>
-        </form>
-      </div>
-    </nav>
-  </div>
-  <div id="map"></div>
+    <div class="navigation">
+        <nav>
+            <input type="checkbox" id="show-search">
+            <input type="checkbox" id="show-menu">
+            <div class="content">
+                <div class="logo"><a href="#">SINGKO</a></div>
+                <ul class="links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
 
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+                    <li>
+                        <a href="#" class="desktop-link">Destinations</a>
+                        <input type="checkbox" id="show-destinations">
+                        <label for="show-destinations">Destinations</label>
+                        <ul>
+                            <li><a href="#">Drop Menu 1</a></li>
+                            <li><a href="#">Drop Menu 2</a></li>
+                            <li><a href="#">Drop Menu 3</a></li>
+                            <li><a href="#">Drop Menu 4</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="search-container">
+                <form action="#">
+                  <input type="text" placeholder="Search.." name="search">
+                  <button type="submit">Search</button>
+                </form>
+              </div>
+        </nav>
+    </div>
+    <div id="map-container">
+        <div id="map"></div>
+        <div class="locate-button" onclick="showModal()">Locate Me</div>
+    </div>
+    <div class="navbar">Navigation Bar</div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p>Modal Content Here</p>
+        </div>
+    </div>
+
 </body>
-
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script>
+            var map = L.map('map').setView([0, 0], 13); // Centered at coordinates [0, 0] with zoom level 13
+        
+            // Add OpenStreetMap tile layer to the map
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+        
+            // Get user's geolocation and add a marker to the map
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var latitude = position.coords.latitude;
+                var longitude = position.coords.longitude;
+        
+                L.marker([latitude, longitude]).addTo(map)
+                    .bindPopup('Your Location').openPopup();
+        
+                map.setView([16.402332, 120.596008], 13); // Set map center to user's location
+            }, function (error) {
+                console.error('Error getting geolocation:', error);
+            });
+ // JavaScript code for creating the map and adding geolocation functionality goes here
+
+        // Function to handle locating the user
+        function locateUser() {
+            // Your geolocation logic here
+            // Example: Use Leaflet's locate method to get user's location
+            map.locate({ setView: true, maxZoom: 16 });
+        }
+
+        // Initialize the map
+        var map = L.map('map').setView([0, 0], 2); // Set default view to (0, 0) with zoom level 2
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+  
+
+            // JavaScript code for creating the map and adding geolocation functionality goes here
+
+        // Function to handle locating the user
+        function locateUser() {
+            // Your geolocation logic here
+            // Example: Use Leaflet's locate method to get user's location
+            map.locate({ setView: true, maxZoom: 16 });
+        }
+
+        // Function to show the modal
+        function showModal() {
+            var modal = document.getElementById('myModal');
+            modal.style.display = 'block';
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            var modal = document.getElementById('myModal');
+            modal.style.display = 'none';
+        }
+
+        // Initialize the map
+        var map = L.map('map').setView([0, 0], 2); // Set default view to (0, 0) with zoom level 2
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        var latitude = 16.402332; // Replace with your desired latitude
+        var longitude = 120.596008; // Replace with your desired longitude
+        var zoomLevel = 13; // Set the initial zoom level
+
+        var map = L.map('map').setView([16.402332, 120.596008], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+        var marker = L.marker([16.402332, 120.596008], 13).addTo(map);
+        marker.bindPopup("Your Popup Content").openPopup();
+        
   var map = L.map('map').setView([0, 0], 13); // Centered at coordinates [0, 0] with zoom level 13
 
   // Add OpenStreetMap tile layer to the map
@@ -210,3 +148,4 @@
 </script>
 
 </html>
+
