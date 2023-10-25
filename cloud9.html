@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Singko Siargao Tour</title>
+    <link rel="stylesheet" href="Style/style.css">
+</head>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: url("Images/bg1.jpg") center/cover no-repeat;
+        font-family: Arial, sans-serif;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: 2fr 1fr; /* Two columns, the first one is twice as wide */
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .grid-item {
+        position: relative;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+        .grid-item img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .grid-item h1 {
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+
+        .grid-item p {
+            font-size: 1em; /* Adjust the text size as needed */
+        }
+
+        .grid-item button {
+            background: transparent;
+            color: #007BFF;
+            border: 2px solid #007BFF;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+        }
+
+            .grid-item button:hover {
+                background: #007BFF;
+                color: #fff;
+            }
+</style>
+
+<body>
+    <!-- Navigation Bar -->
+    <div class="navigation">
+        <nav>
+            <input type="checkbox" id="show-search">
+            <input type="checkbox" id="show-menu"> <!-- Fixed the missing equal sign here -->
+            <div class="content">
+                <div class="logo"><a href="#">SINGKO</a></div>
+                <ul class="links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="destination.html">Destination</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="search-container">
+                <form action="#">
+                    <input type="text" placeholder="Search.." name="search">
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </div>
+
+    <div class="grid-container">
+        <div class="grid-item">
+            <img src="Images/cloud9.jpg" alt="Cloud 9" style="max-width: 100%; height: auto;">
+            <h1>Cloud 9</h1>
+            <p>Description: Cloud 9 is a world-renowned surfing spot in Siargao, known for its perfect barreling right-hander waves. It's a must-visit for surf enthusiasts.</p>
+            <button type="view">View More</button>
+        </div>
+
+        <div class="grid-item">
+            <img src="Images/nakedisland.jpg" alt="Naked Island">
+            <h1>Naked Island</h1>
+            <button type="view">View More</button>
+        </div>
+
+        <!-- Add the rest of the grid items in the same format with smaller images and text -->
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
