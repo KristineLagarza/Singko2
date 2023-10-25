@@ -15,29 +15,39 @@
         max-width: 100%;
         max-height: 200%;
         margin: auto;
-        overflow: hidden; /* Hide the overflow content */
+        overflow: hidden;
+        /* Hide the overflow content */
     }
 
     .slideshow-content {
-        display: flex; /* Use flex to create a horizontal layout */
-        transition: transform 1s; /* Smoothly transition the transform property for sliding */
+        display: flex;
+        /* Use flex to create a horizontal layout */
+        transition: transform 1s;
+        /* Smoothly transition the transform property for sliding */
     }
 
     .mySlides {
-        width: 100%; /* Set the width to 100% to make them the same width as the container */
-        max-height: 500px; /* Set the maximum height to control the size */
+        width: 100%;
+        /* Set the width to 100% to make them the same width as the container */
+        max-height: 500px;
+        /* Set the maximum height to control the size */
     }
 
     .landing {
         text-align: center;
-        font-family: 'YourCustomFont', Arial, sans-serif; /* Use your custom font here */
-        color: #0077b6; /* Change the text color to your desired color */
+        font-family: 'YourCustomFont', Arial, sans-serif;
+        /* Use your custom font here */
+        color: #0077b6;
+        /* Change the text color to your desired color */
     }
 
     .about-container {
-        background-color: #f0f0f0; /* Container background color */
-        padding: 20px; /* Adjust the padding as needed */
-        border-radius: 10px; /* Add rounded corners to the container */
+        background-color: #f0f0f0;
+        /* Container background color */
+        padding: 20px;
+        /* Adjust the padding as needed */
+        border-radius: 10px;
+        /* Add rounded corners to the container */
         text-align: center;
         font-family: Broadway;
         text-align: justify;
@@ -46,7 +56,6 @@
 </style>
 
 <body>
-
     <!-- Navigation Bar -->
     <div class="navigation">
         <nav>
@@ -57,101 +66,94 @@
                 <ul class="links">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
-          
-                    <li>
-                        <a href="#" class="desktop-link">Destinations</a>
-                        <input type="checkbox" id="show-destinations">
-                        <label for="show-destinations">Destinations</label>
-                        <ul>
-                            <li><a href="#">Drop Menu 1</a></li>
-                            <li><a href="#">Drop Menu 2</a></li>
-                            <li><a href="#">Drop Menu 3</a></li>
-                            <li><a href="#">Drop Menu 4</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="destination.html">Destination</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </div>
             <div class="search-container">
                 <form action="#">
-                  <input type="text" placeholder="Search.." name="search">
-                  <button type="submit">Search</button>
+                    <input type="text" placeholder="Search.." name="search">
+                    <button type="submit">Search</button>
                 </form>
-              </div>
+            </div>
         </nav>
     </div>
-
     <div class="about-container">
         <img src="Images/siargaw.jpg" />
         <h3>ABOUT SIARGAO PHILIPPINES</h3>
         <br>
         <h1>
-            Siargao is a teardrop-shaped island located on the northeastern coast of Mindanao. It is best known for its reliable surfing conditions all year round, which have earned it the title of the "Surfing Capital of the Philippines." Thanks to its reliable surfing weather, it has become a great surfing spot for both veterans and beginners.
+            Siargao is a teardrop-shaped island located on the northeastern coast of Mindanao. It is best known for its
+            reliable surfing conditions all year round, which have earned it the title of the "Surfing Capital of the
+            Philippines." Thanks to its reliable surfing weather, it has become a great surfing spot for both veterans
+            and beginners.
         </h1>
         <br><br>
         <h1>
-            Aside from its surfing areas, Siargao Island also boasts white sand beaches, picturesque islands, azure waters perfect for snorkeling and diving, waterfalls, lagoons, and caves.
+            Aside from its surfing areas, Siargao Island also boasts white sand beaches, picturesque islands, azure
+            waters perfect for snorkeling and diving, waterfalls, lagoons, and caves.
         </h1>
         <br><br>
         <h1>
-            
-            Siargao is home to several breathtaking beach destinations and sites. Here are some of the most popular and stunning beaches you can visit on the island:
+
+            Siargao is home to several breathtaking beach destinations and sites. Here are some of the most popular and
+            stunning beaches you can visit on the island:
         </h1>
     </div>
 
     <!-- Landing Page -->
 
-        <!-- Slideshow Container -->
-        <div class="slideshow-container">
-            <img src="Images/siar-head.jpg" class="mySlides" />
-            <img src="Images/cloud9.jpg" class="mySlides" />
-            <img src="Images/nakedisland.jpg" class="mySlides" />
-            <img src="Images/sugba.jpg" class="mySlides" />
-            <img src="Images/sohotoon.jpg" class="mySlides" />
-            <img src="Images/guyam.jpg" class="mySlides" />
-            <img src="Images/daku.jpg" class="mySlides" />
-            <img src="Images/pacifico.jpg" class="mySlides" />
-            <img src="Images/rockpools.jpg" class="mySlides" />
-            <img src="Images/secret.jpg" class="mySlides" />
-            <img src="Images/taktak.jpg" class="mySlides" />
-            <img src="Images/alegria.jpg" class="mySlides" />
-            <img src="Images/blue.jpg" class="mySlides" />
-            <img src="Images/cave.jpg" class="mySlides" />
-            <img src="Images/corre.jpg" class="mySlides" />
-            <img src="Images/maasin.jpg" class="mySlides" />
+    <!-- Slideshow Container -->
+    <div class="slideshow-container">
+        <img src="Images/siar-head.jpg" class="mySlides" />
+        <img src="Images/cloud9.jpg" class="mySlides" />
+        <img src="Images/nakedisland.jpg" class="mySlides" />
+        <img src="Images/sugba.jpg" class="mySlides" />
+        <img src="Images/sohotoon.jpg" class="mySlides" />
+        <img src="Images/guyam.jpg" class="mySlides" />
+        <img src="Images/daku.jpg" class="mySlides" />
+        <img src="Images/pacifico.jpg" class="mySlides" />
+        <img src="Images/rockpools.jpg" class="mySlides" />
+        <img src="Images/secret.jpg" class="mySlides" />
+        <img src="Images/taktak.jpg" class="mySlides" />
+        <img src="Images/alegria.jpg" class="mySlides" />
+        <img src="Images/blue.jpg" class="mySlides" />
+        <img src="Images/cave.jpg" class="mySlides" />
+        <img src="Images/corre.jpg" class="mySlides" />
+        <img src="Images/maasin.jpg" class="mySlides" />
 
-            <!-- Add more images as needed -->
-        </div>
+        <!-- Add more images as needed -->
+    </div>
 
 
-        <script src="script.js"></script>
-        <script>
-            // JavaScript for Image Slideshow
-            var slideIndex = 0;
-            showSlides();
+    <script src="script.js"></script>
+    <script>
+        // JavaScript for Image Slideshow
+        var slideIndex = 0;
+        showSlides();
 
-            function showSlides() {
-                var i;
-                var slides = document.getElementsByClassName("mySlides");
+        function showSlides() {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
 
-                // Hide all images
-                for (i = 0; i < slides.length; i++) {
-                    slides[i].style.display = "none";
-                }
-
-                // Increment slideIndex and reset if it exceeds the number of images
-                slideIndex++;
-                if (slideIndex > slides.length) {
-                    slideIndex = 1;
-                }
-
-                // Display the current image
-                slides[slideIndex - 1].style.display = "block";
-
-                // Change image every 3 seconds (3000 milliseconds)
-                setTimeout(showSlides, 2000);
+            // Hide all images
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
             }
-        </script>
+
+            // Increment slideIndex and reset if it exceeds the number of images
+            slideIndex++;
+            if (slideIndex > slides.length) {
+                slideIndex = 1;
+            }
+
+            // Display the current image
+            slides[slideIndex - 1].style.display = "block";
+
+            // Change image every 3 seconds (3000 milliseconds)
+            setTimeout(showSlides, 2000);
+        }
+    </script>
 </body>
 
 </html>
