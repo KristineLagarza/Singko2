@@ -238,11 +238,10 @@ nav .content .links {
 
 /* ------------------------------------------- Destination ---------------------------------------------*/
 .grid-container {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  background-color: #2196F3;
-  padding: 100px;
-  column-gap: 30px;
+	display: grid;
+	grid-template-columns: auto auto auto;
+	background: url("Images/bg1.jpg");
+	column-gap: 30px;
 }
 
 .grid-item {

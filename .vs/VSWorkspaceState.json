@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Images",
+    "\\Style"
   ],
-  "SelectedNode": "\\C:\\Users\\INSTRUCT-D522lab\\Source\\Repos\\Singko2",
+  "SelectedNode": "\\Style\\style.css",
   "PreviewInSolutionExplorer": false
 }
