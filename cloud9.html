@@ -9,58 +9,86 @@
 </head>
 
 <style>
-    body {
+    * {
         margin: 0;
         padding: 0;
-        background: url("Images/bg1.jpg") center/cover no-repeat;
+        box-sizing: border-box;
+    }
+
+    /* Set a background image */
+    body {
+        background: url("Images/cloud9.jpg") center/cover no-repeat;
         font-family: Arial, sans-serif;
     }
 
+    /* Style the navigation bar if you have one */
+
+    /* Main container styles */
     .grid-container {
         display: grid;
-        grid-template-columns: 2fr 1fr; /* Two columns, the first one is twice as wide */
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 20px;
         padding: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
     }
 
+    .grid-scroll-container {
+        overflow: auto;
+        max-height: 80vh;
+    }
+
+    /* Grid item styles */
     .grid-item {
-        position: relative;
-        background-color: rgba(255, 255, 255, 0.8);
+        background-color: rgba(255, 255, 255, 0.9);
         padding: 20px;
-        text-align: center;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        border-radius: 10px;
     }
 
-        .grid-item img {
-            max-width: 100%;
-            height: auto;
-        }
+    /* Image container and image styles */
+    .image-container {
+        width: 100%;
+        max-height: 50vh;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-        .grid-item h1 {
-            margin: 10px 0;
-            font-size: 1.2em;
-        }
+    .grid-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+    }
 
-        .grid-item p {
-            font-size: 1em; /* Adjust the text size as needed */
-        }
+    /* Text container styles */
+    .text-container {
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 20px;
+        border-radius: 0 0 10px 10px;
+    }
 
-        .grid-item button {
-            background: transparent;
-            color: #007BFF;
-            border: 2px solid #007BFF;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s, color 0.3s;
-        }
+    .grid-item h1 {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+    }
 
-            .grid-item button:hover {
-                background: #007BFF;
-                color: #fff;
-            }
+    .grid-item p {
+        font-size: 1em;
+    }
+
+    /* Responsive design for smaller screens */
+    @media (max-width: 768px) {
+        .grid-container {
+            grid-template-columns: 1fr;
+            padding: 10px;
+        }
+    }
+
 </style>
 
 <body>
@@ -68,7 +96,7 @@
     <div class="navigation">
         <nav>
             <input type="checkbox" id="show-search">
-            <input type="checkbox" id="show-menu"> <!-- Fixed the missing equal sign here -->
+            <input type="checkbox" id="show-menu">
             <div class="content">
                 <div class="logo"><a href="#">SINGKO</a></div>
                 <ul class="links">
@@ -87,19 +115,33 @@
         </nav>
     </div>
 
-    <div class="grid-container">
+    <div class="grid-container grid-scroll-container">
         <div class="grid-item">
-            <img src="Images/cloud9.jpg" alt="Cloud 9" style="max-width: 100%; height: auto;">
-            <h1>Cloud 9</h1>
-            <p>Description: Cloud 9 is a world-renowned surfing spot in Siargao, known for its perfect barreling right-hander waves. It's a must-visit for surf enthusiasts.</p>
-            <button type="view">View More</button>
+            <div class="image-container">
+                <img src="Images/cloud9.jpg" alt="Cloud 9">
+            </div>
+            <div class="text-container">
+                <h1>Cloud 9</h1>
+                <p>
+                    Cloud 9 is Siargao's most popular surfing spot. This surfing paradise is in the southeast corner of Siargao, in the town of General Luna. Cloud 9 is famous for its barreling right-hand waves and thick hollow tubes that can make every advanced surfer's heart skip a beat.
+                </p>
+                <p>
+                    The best part is that Cloud 9 has great waves all year round. But if you want to catch the ocean in its best surfing conditions, visit from September to December.
+                </p>
+            </div>
         </div>
 
-        <div class="grid-item">
-            <img src="Images/nakedisland.jpg" alt="Naked Island">
-            <h1>Naked Island</h1>
-            <button type="view">View More</button>
+        <!-- Add this code below your grid container -->
+        <div class="google-maps">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6144.97478957216!2d126.16431916849129!3d9.808947067853018!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3238d6d6378ad47d%3A0xd60d96225614b85e!2sR578%2BF36%2C%20Siargao%20Island%2C%20General%20Luna%2C%20Surigao%20del%20Norte!5e0!3m2!1sen!2sph!4v1675456700000!5m2!1sen!2sph"
+                    width="100%"
+                    height="300"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"></iframe>
         </div>
+
+
 
         <!-- Add the rest of the grid items in the same format with smaller images and text -->
     </div>
