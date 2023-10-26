@@ -9,6 +9,32 @@
 </head>
 
 <style>
+
+    /* Your CSS styles here */
+
+    .waze-button {
+        background-color: #44c767;
+        border: 1px solid #18ab29;
+        display: inline-block;
+        cursor: pointer;
+        color: #ffffff;
+        font-family: Arial, sans-serif;
+        font-size: 1em;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        margin: 10px;
+        text-align: center;
+    }
+
+        .waze-button:hover {
+            background-color: #5cbf2a;
+        }
+    #map {
+        width: 100%;
+        height: 300px;
+    }
+
     * {
         margin: 0;
         padding: 0;
@@ -88,7 +114,6 @@
             padding: 10px;
         }
     }
-
 </style>
 
 <body>
@@ -128,6 +153,10 @@
                 <p>
                     The best part is that Cloud 9 has great waves all year round. But if you want to catch the ocean in its best surfing conditions, visit from September to December.
                 </p>
+
+                <p>
+                    <a href="https://www.waze.com/ul?ll=9.808947067853018%2C126.16431916849129&navigate=yes" target="_blank">Get Directions on Waze</a>
+                </p>
             </div>
         </div>
 
@@ -141,11 +170,54 @@
                     loading="lazy"></iframe>
         </div>
 
+        <div id="map"></div>
 
-
-        <!-- Add the rest of the grid items in the same format with smaller images and text -->
+        <div id="places-grid"></div>
     </div>
-    <script src="script.js"></script>
+    <script>
+        function initMap() {
+            // Siargao coordinates (you can adjust this to the location you want)
+            var siargaoLocation = { lat: 9.808947067853018, lng: 126.16431916849129 };
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: siargaoLocation,
+                zoom: 15
+            });
+
+            var request = {
+                location: siargaoLocation,
+                radius: 500, // Adjust the radius to your preference
+                types: ['store', 'restaurant', 'cafe'] // Types of places you want to display
+            };
+
+            var service = new google.maps.places.PlacesService(map);
+            service.nearbySearch(request, function (results, status) {
+                if (status == google.maps.places.PlacesServiceStatus.OK) {
+                    var placesGrid = document.getElementById('places-grid');
+                    results.forEach(function (place) {
+                        var placeItem = document.createElement('div');
+                        placeItem.className = 'grid-item';
+
+                        // Create a title for the place
+                        var placeTitle = document.createElement('h1');
+                        placeTitle.innerText = place.name;
+
+                        // Create a paragraph for place details
+                        var placeDetails = document.createElement('p');
+                        placeDetails.innerText = place.vicinity;
+
+                        placeItem.appendChild(placeTitle);
+                        placeItem.appendChild(placeDetails);
+
+                        placesGrid.appendChild(placeItem);
+                    });
+                }
+            });
+        }
+    </script>
+    <!-- Add the Google Maps API script with your API key and callback -->
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap"></script>
 </body>
 
 </html>
