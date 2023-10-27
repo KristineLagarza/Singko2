@@ -57,64 +57,35 @@
         <br>
     </form>
 </div>
-  
-
-</div>
-  <!-- Include the separate JavaScript file -->
-  <script src="flights-test.js"></script>
 </body>
 <script>
-   const xmlString = `Flightsearch.html`;
+let parser = new DOMParser();
+let xmlDoc = parser.parseFromString(xmlString, "flights.xml");
 
-// Parse the XML string to an XML document
-const parser = new DOMParser();
-const xmlDoc = parser.parseFromString(xmlString, "text/xml");
+document.getElementById("searchButton").addEventListener("click", function() {
+    let searchQuery = document.getElementById("searchInput").value;
+    searchFlights(xmlDoc, searchQuery);
+});
 
-// Get all FlightDetails elements
-const flightDetailsElements = xmlDoc.getElementsByTagName("FlightDetails");
+function searchFlights(xmlDoc, searchQuery) {
+    let resultsContainer = document.getElementById("results");
+    resultsContainer.innerHTML = ""; // Clear previous results
 
-// Function to filter flights based on user input
-function filterFlights(searchTerm) {
-    const filteredFlights = Array.from(flightDetailsElements).filter(flight => {
-        const departureAirportCode = flight.getAttribute("FLSDepartureCode");
-        const arrivalAirportCode = flight.getAttribute("FLSArrivalCode");
-        
-        // Check if the flight matches the search term (case-insensitive)
-        return departureAirportCode.toLowerCase().includes(searchTerm.toLowerCase()) ||
-               arrivalAirportCode.toLowerCase().includes(searchTerm.toLowerCase());
-    });
+    let flights = xmlDoc.getElementsByTagName("FlightDetails");
 
-    return filteredFlights;
-}
+    for (let i = 0; i < flights.length; i++) {
+        let departureDate = flights[i].getAttribute("FLSDepartureDateTime");
+        if (departureDate.includes(searchQuery)) {
+            // Match found, display the flight details
+            let flightNumber = flights[i].getElementsByTagName("FlightLegDetails")[0].getAttribute("FlightNumber");
 
-// Function to display filtered flights
-function displayFilteredFlights(filteredFlights) {
-    const resultsDiv = document.getElementById("results");
-    resultsDiv.innerHTML = ""; // Clear previous results
-    
-    if (filteredFlights.length === 0) {
-        resultsDiv.textContent = "No matching flights found.";
-    } else {
-        filteredFlights.forEach(flight => {
-            const flightNumber = flight.querySelector("FlightLegDetails").getAttribute("FlightNumber");
-            const departureAirport = flight.getAttribute("FLSDepartureCode");
-            const arrivalAirport = flight.getAttribute("FLSArrivalCode");
-            const flightInfo = `Flight ${flightNumber}: ${departureAirport} to ${arrivalAirport}`;
-            
-            const flightDiv = document.createElement("div");
-            flightDiv.textContent = flightInfo;
-            resultsDiv.appendChild(flightDiv);
-        });
+            // Create a result element
+            let resultElement = document.createElement("div");
+            resultElement.textContent = `Flight Number: ${flightNumber}, Departure Date: ${departureDate}`;
+            resultsContainer.appendChild(resultElement);
+        }
     }
 }
-
-// Add event listener to the search button
-const searchButton = document.getElementById("searchButton");
-searchButton.addEventListener("click", () => {
-    const searchInput = document.getElementById("searchInput").value;
-    const filteredFlights = filterFlights(searchInput);
-    displayFilteredFlights(filteredFlights);
-});
 
 
     </script>
