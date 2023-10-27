@@ -177,48 +177,58 @@
 
         <div id="places-grid"></div>
     </div>
-    <script>
-        function initMap() {
-            // Del Carmen, Siargao coordinates
-            var delCarmenLocation = { lat: 9.757802956827771, lng: 125.93547294099812 };
+    <div id="flickr-grid" class="grid-container grid-scroll-container">
+    </div>
 
-            var map = new google.maps.Map(document.getElementById('map'), {
-                center: delCarmenLocation,
-                zoom: 15
-            });
 
-            var request = {
-                location: delCarmenLocation,
-                radius: 500, // Adjust the radius to your preference
-                types: ['store', 'restaurant', 'cafe'] // Types of places you want to display
-            };
-
-            var service = new google.maps.places.PlacesService(map);
-            service.nearbySearch(request, function (results, status) {
-                if (status == google.maps.places.PlacesServiceStatus.OK) {
-                    var placesGrid = document.getElementById('places-grid');
-                    results.forEach(function (place) {
-                        var placeItem = document.createElement('div');
-                        placeItem.className = 'grid-item';
-
-                        var placeTitle = document.createElement('h1');
-                        placeTitle.innerText = place.name;
-
-                        var placeDetails = document.createElement('p');
-                        placeDetails.innerText = place.vicinity;
-
-                        placeItem.appendChild(placeTitle);
-                        placeItem.appendChild(placeDetails);
-
-                        placesGrid.appendChild(placeItem);
-                    });
-                }
-            });
-        }
     </script>
     <!-- Add the Google Maps API script with your API key and callback -->
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap"></script>
+
+    <script>
+        // Flickr API key
+        const apiKey = "2a371d8f645a46310a24e04f146aae1c";
+
+        // Function to fetch images from Flickr
+        function fetchFlickrImages() {
+            // Your Flickr API request URL for photos from Sugba Siargao, Philippines
+            const flickrApiUrl = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=sugba,siargao,philippines&format=json&nojsoncallback=1`;
+
+            fetch(flickrApiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const photos = data.photos.photo;
+
+                    // Get the Flickr image URL for each photo
+                    photos.forEach(photo => {
+                        const imageUrl = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`;
+
+                        // Create a new grid item for each image
+                        const gridItem = document.createElement("div");
+                        gridItem.className = "grid-item";
+                        const imageContainer = document.createElement("div");
+                        imageContainer.className = "image-container";
+                        const img = document.createElement("img");
+                        img.src = imageUrl;
+                        img.alt = "Sugba Siargao";
+                        imageContainer.appendChild(img);
+                        gridItem.appendChild(imageContainer);
+
+                        // Add the grid item to the grid
+                        const flickrGrid = document.getElementById("flickr-grid");
+                        flickrGrid.appendChild(gridItem);
+                    });
+                })
+                .catch(error => {
+                    console.error("Error fetching Flickr images:", error);
+                });
+        }
+
+        // Call the function to fetch and display Flickr images
+        fetchFlickrImages();
+    </script>
+
 </body>
 
 </html>

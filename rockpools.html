@@ -12,6 +12,25 @@
 
     /* Your CSS styles here */
 
+    /* Add this CSS for the Flickr image grid */
+    .flickr-image-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .flickr-image-container {
+        overflow: hidden;
+        border-radius: 10px;
+    }
+
+    .flickr-image {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
     .waze-button {
         background-color: #44c767;
         border: 1px solid #18ab29;
@@ -178,6 +197,11 @@
         <div id="map"></div>
 
         <div id="places-grid"></div>
+
+        <div class="flickr-image-grid">
+            <!-- Images from Flickr will be inserted here -->
+        </div>
+
     </div>
     <script>
         function initMap() {
@@ -223,6 +247,81 @@
     <!-- Add the Google Maps API script with your API key and callback -->
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap"></script>
+
+    <script>
+        // Flickr API key
+        const flickrApiKey = '01407e4732214e057b8eab9a2631c7c3';
+
+        // Location information
+        const locationName = 'Rock Pools Siargao Magpupungko';
+
+        // Function to fetch Flickr images and populate the grid
+        function fetchFlickrImages() {
+            const flickrUrl = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${flickrApiKey}&text=${locationName}&format=json&nojsoncallback=1`;
+
+            fetch(flickrUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const imageGrid = document.querySelector('.image-grid');
+
+                    data.photos.photo.forEach(photo => {
+                        const photoUrl = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`;
+
+                        // Create an image element for each photo
+                        const imageElement = document.createElement('img');
+                        imageElement.src = photoUrl;
+                        imageElement.alt = locationName;
+
+                        // Create a div to hold the image
+                        const imageContainer = document.createElement('div');
+                        imageContainer.className = 'image-container';
+                        imageContainer.appendChild(imageElement);
+
+                        // Add the image container to the grid
+                        imageGrid.appendChild(imageContainer);
+                    });
+                })
+                .catch(error => console.error(error));
+        }
+
+        // Call the function to fetch Flickr images
+        fetchFlickrImages();
+    </script>
+
+    <script>
+        // Function to fetch Flickr images and populate the Flickr image grid
+        function fetchFlickrImages() {
+            const flickrUrl = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${flickrApiKey}&text=${locationName}&format=json&nojsoncallback=1`;
+
+            fetch(flickrUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const flickrImageGrid = document.querySelector('.flickr-image-grid');
+
+                    data.photos.photo.forEach(photo => {
+                        const photoUrl = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`;
+
+                        // Create an image element for each photo
+                        const flickrImage = document.createElement('img');
+                        flickrImage.src = photoUrl;
+                        flickrImage.alt = locationName;
+                        flickrImage.className = 'flickr-image';
+
+                        // Create a div to hold the image
+                        const flickrImageContainer = document.createElement('div');
+                        flickrImageContainer.className = 'flickr-image-container';
+                        flickrImageContainer.appendChild(flickrImage);
+
+                        // Add the image container to the Flickr image grid
+                        flickrImageGrid.appendChild(flickrImageContainer);
+                    });
+                })
+                .catch(error => console.error(error));
+        }
+
+        // Call the function to fetch Flickr images
+        fetchFlickrImages();
+    </script>
 </body>
 
 </html>

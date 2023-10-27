@@ -12,6 +12,20 @@
 
     /* Your CSS styles here */
 
+    .flickr-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+        .flickr-grid img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
     .waze-button {
         background-color: #44c767;
         border: 1px solid #18ab29;
@@ -176,49 +190,63 @@
 
         <div id="places-grid"></div>
     </div>
-    <script>
-        function initMap() {
-            // Siargao coordinates
-            var siargaoLocation = { lat: 9.8041419, lng: 125.9229046 };
 
-            var map = new google.maps.Map(document.getElementById('map'), {
-                center: siargaoLocation,
-                zoom: 15
-            });
+    <div class="grid-item">
+        <h1>Flickr Images</h1>
+        <div class="flickr-grid"></div>
+    </div>
 
-            var request = {
-                location: siargaoLocation,
-                radius: 500,
-                types: ['store', 'restaurant', 'cafe']
-            };
 
-            var service = new google.maps.places.PlacesService(map);
-            service.nearbySearch(request, function (results, status) {
-                if (status == google.maps.places.PlacesServiceStatus.OK) {
-                    var placesGrid = document.getElementById('places-grid');
-                    results.forEach(function (place) {
-                        var placeItem = document.createElement('div');
-                        placeItem.className = 'grid-item';
-
-                        var placeTitle = document.createElement('h1');
-                        placeTitle.innerText = place.name;
-
-                        var placeDetails = document.createElement('p');
-                        placeDetails.innerText = place.vicinity;
-
-                        placeItem.appendChild(placeTitle);
-                        placeItem.appendChild(placeDetails);
-
-                        placesGrid.appendChild(placeItem);
-                    });
-                }
-            });
-        }
-        }
+    
     </script>
     <!-- Add the Google Maps API script with your API key and callback -->
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap"></script>
+
+    <script>
+        // ... (Your existing JavaScript code) ...
+
+        // Function to fetch and display Flickr photos in a grid
+        function displayFlickrPhotos() {
+            const flickrApiKey = '01407e4732214e057b8eab9a2631c7c3';
+            const flickrEndpoint = 'https://www.flickr.com/services/rest/';
+            const flickrMethod = 'flickr.photos.search';
+            const flickrOptions = {
+                method: flickrMethod,
+                api_key: flickrApiKey,
+                tags: 'siargao', // Tags to search for
+                per_page: 16,    // Number of photos to retrieve
+                format: 'json',
+                nojsoncallback: 1,
+            };
+
+            // Build the URL for the API request
+            const flickrUrl = `${flickrEndpoint}?${Object.entries(flickrOptions)
+                .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+                .join('&')}`;
+
+            // Fetch photos from Flickr
+            fetch(flickrUrl)
+                .then((response) => response.json())
+                .then((data) => {
+                    const photos = data.photos.photo;
+                    const flickrGrid = document.querySelector('.flickr-grid');
+
+                    photos.forEach((photo) => {
+                        const photoUrl = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`;
+                        const img = document.createElement('img');
+                        img.src = photoUrl;
+                        flickrGrid.appendChild(img);
+                    });
+                })
+                .catch((error) => {
+                    console.error('Error fetching Flickr photos:', error);
+                });
+        }
+
+        // Call the function to fetch and display Flickr photos
+        displayFlickrPhotos();
+    </script>
 </body>
 
 </html>
