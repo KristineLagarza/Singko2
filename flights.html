@@ -2,26 +2,77 @@
 <html>
 <head>
   <title>Flight Information</title>
+  <link rel="stylesheet" href="Style/style.css">
 </head>
 <body>
-  <h1>Flight Information</h1>
+  <!-- Navigation Bar -->
+  <div class="navigation">
+    <nav>
+        <input type="checkbox" id="show-search">
+        <input type="checkbox" id="show-menu">
+        <div class="content">
+            <div class="logo"><a href="#">SINGKO</a></div>
+            <ul class="links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="destination.html">Destination</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="search-container">
+            <form action="#">
+                <input type="text" placeholder="Search.." name="search">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+</div>
 
-  <!-- Flight information will be displayed here -->
-  <div id="flightInfo">
-    <!-- Flight details will be inserted here by JavaScript -->
-  </div>
+<!-- Landing Page -->
+<div class="landing">
+    <!-- Slideshow Container -->
+    <div class="slideshow-container-index">
+        <img src="Images/siar.jpg" class="mySlide" />
+        <img src="Images/siar-head.jpg" class="mySlide" />
+        <img src="Images/cloud9.jpg" class="mySlide" />
+        <img src="Images/nakedisland.jpg" class="mySlide" />
+        <img src="Images/sugba.jpg" class="mySlide" />
+        <img src="Images/sohotoon.jpg" class="mySlide" />
+        <img src="Images/guyam.jpg" class="mySlide" />
+        <img src="Images/daku.jpg" class="mySlide" />
+        <img src="Images/pacifico.jpg" class="mySlide" />
+        <img src="Images/rockpools.jpg" class="mySlide" />
+        <img src="Images/secret.jpg" class="mySlide" />
+        <img src="Images/taktak.jpg" class="mySlide" />
+        <img src="Images/alegria.jpg" class="mySlide" />
+        <img src="Images/blue.jpg" class="mySlide" />
+        <img src="Images/cave.jpg" class="mySlide" />
+        <img src="Images/corre.jpg" class="mySlide" />
+        <!-- Add more images as needed -->
+    </div>
+    <br>
+    <h1>Flight Information</h1>
+    <h2>Explore the beautiful sceneries Siargao has to offer!</h2>
+    <br>
 
-  <!-- Form for user input -->
-  <form id="userInputForm">
-    <label for="departureDate">Departure Date:</label>
-    <input type="date" id="departureDate" required><br>
+    <!-- Flight information will be displayed here -->
+    <div id="flightInfo">
+      <!-- Flight details will be inserted here by JavaScript -->
+    </div>
+  
+    <!-- Form for user input -->
+    <form id="userInputForm">
+      <label for="departureDate">Departure Date:</label>
+      <input type="date" id="departureDate" required><br>
+  
+      <label for="flightType">Flight Type:</label>
+      <input type="text" id="flightType" required><br>
+  
+      <button type="button" id="submitButton">Submit</button>
+    </form>
+  
 
-    <label for="flightType">Flight Type:</label>
-    <input type="text" id="flightType" required><br>
-
-    <button type="button" id="submitButton">Submit</button>
-  </form>
-
+</div>
   <!-- Include the separate JavaScript file -->
   <script src="flights-test.js"></script>
 </body>
