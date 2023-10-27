@@ -1153,6 +1153,11 @@ svg.leaflet-image-layer.leaflet-interactive path {
   button[type="button"]:hover {
 	background-color: #45a049;
   }
+
+  #results {
+    color: white;
+    /* Add additional styles as needed */
+}
 /* ---------------------------------------------------- Media Query ---------------------------------------------------*/
 /* Navigation Bar Query */
 @media screen and (max-width: 1250px) {
