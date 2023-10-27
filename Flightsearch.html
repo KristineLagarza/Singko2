@@ -3,6 +3,23 @@
 <head>
   <title>Flight Information</title>
   <link rel="stylesheet" href="Style/style.css">
+  <title>Search Dates Without Flights</title>
+  <style>
+    /* CSS styles for the button */
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    /* Hover effect */
+    button:hover {
+        background-color: #45a049;
+    }
+    </style>
 </head>
 <body>
   <!-- Navigation Bar -->
@@ -17,6 +34,7 @@
                 <li><a href="about.html">About</a></li>
                 <li><a href="destination.html">Destination</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li><a href="Flightsearch.html">Available Flights</a></li>
             </ul>
         </div>
     </nav>
@@ -48,45 +66,46 @@
     <h2>Explore the beautiful sceneries Siargao has to offer!</h2>
     <br>
   <br>
-  <div class="search-container">
-    <form action="#">
-        <input type="text" placeholder="Search available Flights" name="search" id="searchInput">
-<button type="button" id="searchButton">Search Flights</button>
-<div id="results"></div>
+  <button onclick="searchDatesWithoutFlights()">Search Dates Without Flights</button>
+  <div id="result"></div>  
 
         <br>
     </form>
 </div>
 </body>
 <script>
-let parser = new DOMParser();
-let xmlDoc = parser.parseFromString(xmlString, "flights.xml");
+function searchDatesWithoutFlights() {
+    // Load XML data from flights.xml
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            // Parse XML data
+            var xmlDoc = this.responseXML;
 
-document.getElementById("searchButton").addEventListener("click", function() {
-    let searchQuery = document.getElementById("searchInput").value;
-    searchFlights(xmlDoc, searchQuery);
-});
+            // Get all unique dates from the XML data
+            var datesWithFlights = Array.from(xmlDoc.querySelectorAll("Flight")).map(flight => flight.getAttribute("Date"));
+            var uniqueDatesWithFlights = [...new Set(datesWithFlights)];
 
-function searchFlights(xmlDoc, searchQuery) {
-    let resultsContainer = document.getElementById("results");
-    resultsContainer.innerHTML = ""; // Clear previous results
+            // Get all dates within a specific range (modify this according to your requirement)
+            var startDate = new Date("2023-01-01");
+            var endDate = new Date("2023-12-31");
+            var allDatesInRange = [];
 
-    let flights = xmlDoc.getElementsByTagName("FlightDetails");
+            for (var currentDate = startDate; currentDate <= endDate; currentDate.setDate(currentDate.getDate() + 1)) {
+                allDatesInRange.push(currentDate.toISOString().split("T")[0]);
+            }
 
-    for (let i = 0; i < flights.length; i++) {
-        let departureDate = flights[i].getAttribute("FLSDepartureDateTime");
-        if (departureDate.includes(searchQuery)) {
-            // Match found, display the flight details
-            let flightNumber = flights[i].getElementsByTagName("FlightLegDetails")[0].getAttribute("FlightNumber");
+            // Find dates without flights
+            var datesWithoutFlights = allDatesInRange.filter(date => !uniqueDatesWithFlights.includes(date));
 
-            // Create a result element
-            let resultElement = document.createElement("div");
-            resultElement.textContent = `Flight Number: ${flightNumber}, Departure Date: ${departureDate}`;
-            resultsContainer.appendChild(resultElement);
+            // Display the result
+            var resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = "Dates without flights: " + datesWithoutFlights.join(", ");
         }
-    }
+    };
+    xhttp.open("GET", "flights.xml", true);
+    xhttp.send();
 }
-
 
     </script>
 </html>
