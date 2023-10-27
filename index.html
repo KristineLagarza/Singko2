@@ -8,52 +8,7 @@
     <link rel="stylesheet" href="Style/style.css">
 </head>
 
-<style>
-    /* Add this CSS for the slideshow */
-    body {
-        margin: 0;
-        padding: 0;
-        background: url("Images/bg1.jpg") center/cover no-repeat;
-        font-family: Arial, sans-serif;
-    }
 
-    .slideshow-container {
-        position: relative;
-        max-width: 100%;
-        margin: auto;
-    }
-
-    .mySlides {
-        display: none;
-        width: 100%; /* Set the width to 100% to make them the same width as the container */
-        max-height: 600px; /* Set the maximum height to control the size */
-    }
-    /* Style for the landing content */
-    .landing {
-        text-align: center;
-        background: rgba(0, 0, 0, 0.7); /* Add a semi-transparent black background to make text readable */
-        padding: 20px;
-    }
-
-        .landing h2 {
-            color: #fff; /* Text color */
-        }
-
-  .custom-button {
-        background: transparent; /* Transparent background */
-        color: #fff; /* White text color */
-        border: 2px solid #fff; /* White border */
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background 0.3s, color 0.3s; /* Transition effect for background and text color */
-    }
-
-    .custom-button:hover {
-        background: #fff; /* White background on hover */
-        color: #007BFF; /* Blue text color on hover */
-    }
-</style>
 <body>
     <!-- Navigation Bar -->
     <div class="navigation">
@@ -78,40 +33,34 @@
         </nav>
     </div>
 
-
-
     <!-- Landing Page -->
     <div class="landing">
-
         <!-- Slideshow Container -->
-        <div class="slideshow-container">
-            <img src="Images/siar.jpg" class="mySlides" />
-            <img src="Images/siar-head.jpg" class="mySlides" />
-            <img src="Images/cloud9.jpg" class="mySlides" />
-            <img src="Images/nakedisland.jpg" class="mySlides" />
-            <img src="Images/sugba.jpg" class="mySlides" />
-            <img src="Images/sohotoon.jpg" class="mySlides" />
-            <img src="Images/guyam.jpg" class="mySlides" />
-            <img src="Images/daku.jpg" class="mySlides" />
-            <img src="Images/pacifico.jpg" class="mySlides" />
-            <img src="Images/rockpools.jpg" class="mySlides" />
-            <img src="Images/secret.jpg" class="mySlides" />
-            <img src="Images/taktak.jpg" class="mySlides" />
-            <img src="Images/alegria.jpg" class="mySlides" />
-            <img src="Images/blue.jpg" class="mySlides" />
-            <img src="Images/cave.jpg" class="mySlides" />
-            <img src="Images/corre.jpg" class="mySlides" />
-
-
+        <div class="slideshow-container-index">
+            <img src="Images/siar.jpg" class="mySlide" />
+            <img src="Images/siar-head.jpg" class="mySlide" />
+            <img src="Images/cloud9.jpg" class="mySlide" />
+            <img src="Images/nakedisland.jpg" class="mySlide" />
+            <img src="Images/sugba.jpg" class="mySlide" />
+            <img src="Images/sohotoon.jpg" class="mySlide" />
+            <img src="Images/guyam.jpg" class="mySlide" />
+            <img src="Images/daku.jpg" class="mySlide" />
+            <img src="Images/pacifico.jpg" class="mySlide" />
+            <img src="Images/rockpools.jpg" class="mySlide" />
+            <img src="Images/secret.jpg" class="mySlide" />
+            <img src="Images/taktak.jpg" class="mySlide" />
+            <img src="Images/alegria.jpg" class="mySlide" />
+            <img src="Images/blue.jpg" class="mySlide" />
+            <img src="Images/cave.jpg" class="mySlide" />
+            <img src="Images/corre.jpg" class="mySlide" />
             <!-- Add more images as needed -->
         </div>
-
         <br>
-        <h2>Welcome to Siargao Island</h2>
+        <h1>WELCOME TO SIARGAO ISLAND</h1>
         <h2>Explore the beautiful sceneries Siargao has to offer!</h2>
         <br>
         <button class="custom-button">
-            <a href="destination.html" style="text-decoration: none; color: inherit;">Search Destinations</a>
+            <a href="destination.html" style="text-decoration: none; color: inherit;">View Destinations</a>
         </button>
 
     </div>
@@ -124,7 +73,7 @@
 
         function showSlides() {
             var i;
-            var slides = document.getElementsByClassName("mySlides");
+            var slides = document.getElementsByClassName("mySlide");
 
             // Hide all images
             for (i = 0; i < slides.length; i++) {

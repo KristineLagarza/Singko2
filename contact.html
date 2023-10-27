@@ -10,78 +10,6 @@
 
 </head>
 
-<style>
-
-
-    /* Style for the footer */
-    .footer {
-        background-color: #000;
-        color: #fff;
-        text-align: center;
-        padding: 10px 0;
-    }
-   
-
-    /* Style for Contact Container */
-  .contact-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-image: url('Images/bg1.jpg'); /* Replace 'path-to-your-image.jpg' with the actual path to your background image */
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        height: 100vh; /* Make the container full height */
-        width: 100%; /* Make the container full width */
-    }
-
-    /* Style for Contact Us Section */
-    .contact-us {
-        background-color: rgb(230 235 243 / 50%);
-        padding: 20px;
-        border-radius: 10px;
-        text-align: center; /* Center-align the content */
-    }
-
-        .contact-us h2 {
-            font-size: 28px; /* Increase the font size */
-            color: #0077b6;
-        }
-
-        .contact-us p {
-            font-size: 18px; /* Increase the font size */
-            margin: 10px 0;
-        }
-
-        .contact-us ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .contact-us li {
-            font-size: 16px; /* Increase the font size */
-            margin: 5px 0;
-        }
-
-    .contact-links {
-        list-style-type: none;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-    }
-
-        .contact-links li {
-            font-size: 18px;
-            margin: 10px 20px;
-            display: flex;
-            align-items: center;
-        }
-
-        .contact-links i {
-            margin-right: 10px;
-        }
-</style>
-
 <body>
     <!-- Navigation Bar -->
     <div class="navigation">
@@ -106,21 +34,24 @@
         </nav>
     </div>
 
-    <br>
-    <div class="contact-container">
-        <div class="contact-us">
-            <h2>Contact Us</h2>
-            <p>If you have any questions or need more information, please feel free to contact us:</p>
-            <ul>
-                <li>Email: singkotours@gmail.com</li>
-                <li>Phone: +63 977 404 1236</li>
-                <li>Address: Bakakeng, Drive Baguio City</li>
-            </ul>
-            <ul class="contact-links">
-                <li><i class="fab fa-facebook"></i> <a href="https://www.facebook.com/singko.tours">Facebook</a></li>
-                <li><i class="fab fa-twitter"></i> <a href="https://twitter.com/singkotours">Twitter</a></li>
-                <li><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/singkotours/">Instagram</a></li>
-            </ul>
+    <div class="contact">
+        <div class="contact-cont">
+            <div class="contact-item">
+                <h2>CONTACT US</h2>
+                <p>If you have any questions or need more information, please feel free to contact us:</p>
+                <ul>
+                    <li>Email: singkotours@gmail.com</li>
+                    <li>Phone: +63 977 404 1236</li>
+                    <li>Address: Bakakeng, Drive Baguio City</li>
+                </ul>
+                <ul class="contact-links">
+                    <li><i class="fab fa-facebook"></i> <a href="https://www.facebook.com/singko.tours">Facebook</a>
+                    </li>
+                    <li><i class="fab fa-twitter"></i> <a href="https://twitter.com/singkotours">Twitter</a></li>
+                    <li><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/singkotours/">Instagram</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -129,38 +60,6 @@
         All Rights Reserved | Singko Team
     </div>
 
-
-   
-
-
-    <script src="script.js"></script>
-    <script>
-        // JavaScript for Image Slideshow
-        var slideIndex = 0;
-        showSlides();
-
-        function showSlides() {
-            var i;
-            var slides = document.getElementsByClassName("mySlides");
-
-            // Hide all images
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-
-            // Increment slideIndex and reset if it exceeds the number of images
-            slideIndex++;
-            if (slideIndex > slides.length) {
-                slideIndex = 1;
-            }
-
-            // Display the current image
-            slides[slideIndex - 1].style.display = "block";
-
-            // Change image every 3 seconds (3000 milliseconds)
-            setTimeout(showSlides, 2000);
-        }
-    </script>
 </body>
 
 </html>

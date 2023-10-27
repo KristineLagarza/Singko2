@@ -11,10 +11,13 @@
   font-family: bara;
   src: url(../Resources/BARABARA.otf);
 }
-
 @font-face {
   font-family: mont-reg;
   src: url(../Resources/Montserrat-Regular.otf)
+}
+@font-face {
+	font-family: alt-med;
+	src: url(../Resources/MontserratAlternates-MediumItalic.otf)
 }
 
 /* ------------------------------------------- Navigation Bar ---------------------------------------------*/
@@ -194,46 +197,63 @@ nav .content .links {
 
 
 /* --------------------------------------------------- Landing Page ----------------------------------------------------*/
-/* style.css */
 .landing {
-  background-image: url('Images/siar-head.jpg');
-  /* Replace with your image file path */
+  background-image: 
+  linear-gradient(0deg, rgba(0,0,0,0.5) 49%, rgba(201,201,201,0.5) 100%),
+  url(../Images/bg1.jpg);
   background-size: cover;
   background-position: center;
-  background-color: aquamarine;
+  background-repeat: no-repeat;
   color: black;
   text-align: center;
-  padding: 50px;
-  height: 100vh;
-  /* Make the landing page cover the entire viewport height */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  padding: 20px;
+  height: 667px;
+  background-color: #003166;
 }
-
+.landing h1 {
+  font-family: bara;
+  font-size: 70px;
+  margin-top: 100px;
+  margin-left: 20px;
+  color: white;
+  text-shadow: 10px 10px #000000da;
+}
 .landing h2 {
-  font-family: 'YourCustomFont', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-size: 32px;
-  /* Adjust the font size as needed */
-  margin: 10px 0;
-  /* Adjust the margin as needed */
+	font-family: alt-med;
+	font-size: 20px;
+	margin-left: 20px;
+	padding: 15px;
+	color: white;
 }
-
+.slideshow-container-index {
+	position: relative;
+	max-width: 50%;
+	max-height: 500%;
+	overflow: 100;
+	margin-left: 10px;
+	margin-top: 10px;
+	padding-top: 15px;
+	padding-left: 15px;
+	float: left;
+}
+.mySlide {
+	display: none;
+	width: 100%;
+	height: 100%;
+}
 .custom-button {
-  background: #006eff;
+  background: transparent;
   color: white;
   padding: 10px 20px;
   font-size: 18px;
-  border: none;
+  border: 2px solid #fff; 
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
 .custom-button:hover {
-  background: #0053c6;
-  /* Change the color on hover */
+	background: #fff;
+	color: #007BFF; 
 }
 
 
@@ -1012,6 +1032,72 @@ svg.leaflet-image-layer.leaflet-interactive path {
 		print-color-adjust: exact;
 		}
 	}
+
+
+/* ------------------------------------------------------ Contact US --------------------------------------------------*/
+.contact {
+	height: 629px;
+	background: url(../Images/bg3.jpg);
+	background-repeat: no-repeat;
+	background-size: 1550px 700px;
+}
+.contact-cont {
+	padding-top: 120px;
+	padding-left: 100px;
+	padding-right: 100px;
+}
+.contact-item {
+	padding: 20px;
+	border-radius: 10px;
+	text-align: center;
+	background: linear-gradient(140deg, rgba(251,209,162,0.9) 9%, rgba(125,207,182,0.9) 38%, rgba(0,178,202,0.9) 63%, rgba(29,78,137,0.9) 89%);
+	border-style: solid;
+	border-color: #003560;
+}
+.contact-item h2 {
+	font-size: 80px;
+	font-family: bara;
+	text-shadow: 7px 7px #ffffffda;
+}
+.contact-item p {
+	font-size: 20px;
+	font-family: alt-med;
+	margin: 10px 0;
+	font-weight: bold;
+	padding-bottom: 12px;
+}
+.contact-item ul {
+	list-style-type: none;
+	padding: 0;
+}
+.contact-item li {
+	font-size: 18px;
+	margin: 5px 0;
+	font-family: mont-reg;
+	padding-bottom: 10px;
+}
+.contact-links {
+	list-style-type: none;
+	display: flex;
+	justify-content: center;
+}
+.contact-links li {
+	font-size: 18px;
+	margin: 10px 20px;
+	display: flex;
+	align-items: center;
+	padding-top: 20px;
+}
+.contact-links i {
+	margin-right: 10px;
+}
+.footer {
+	background-color: #000;
+	color: #fff;
+	text-align: center;
+	padding: 10px 0;
+}
+
 /* ---------------------------------------------------- Media Query ---------------------------------------------------*/
 /* Navigation Bar Query */
 @media screen and (max-width: 1250px) {
