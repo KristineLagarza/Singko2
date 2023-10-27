@@ -26,7 +26,7 @@
             <div class="search-container">
                 <form action="#">
                     <input type="text" id="search-input" placeholder="Search..">
-                    <button id="search-button" onclick="filterGrid()">Search</button>
+                    <button id="search-button" onclick="filterGrid()">Filter</button>
                 </form>
             </div>
         </nav>
@@ -129,11 +129,19 @@
     </div>
 
     <script>
-        function filterGrid() {
+        document.getElementById('search-input').addEventListener('input', function() {
             // Get the search term from the input field
-            var searchTerm = document.getElementById('search-input').value.toLowerCase();
+            var searchTerm = this.value.toLowerCase();
             var gridItems = document.querySelectorAll('.grid-item');
-
+    
+            // Check if the search term is empty
+            if (searchTerm === '') {
+                gridItems.forEach(function (item) {
+                    item.style.display = 'block'; // Show all items
+                });
+                return; // Exit the function
+            }
+    
             // Loop through each grid item and hide/show based on the search term
             gridItems.forEach(function (item) {
                 var title = item.querySelector('h1').innerText.toLowerCase();
@@ -143,7 +151,7 @@
                     item.style.display = 'none'; // Hide the item
                 }
             });
-        }
+        });
     </script>
 </body>
 
