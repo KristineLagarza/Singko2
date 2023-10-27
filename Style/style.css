@@ -240,18 +240,43 @@ nav .content .links {
 .grid-container {
 	display: grid;
 	grid-template-columns: auto auto auto;
-	background: url("Images/bg1.jpg");
-	column-gap: 30px;
+	background: linear-gradient(180deg, rgba(242,232,207,1) 0%, rgba(26,117,159,1) 60%, rgba(31,76,106,1) 79%);
+	column-gap: 20px;
+	padding: 20px;
+	row-gap: 20px;
 }
-
 .grid-item {
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.8);
-  padding: 20px;
-  font-size: 30px;
-  text-align: center;
-  margin-top: 50px;
-  height: 400px;
+	position: relative;
+	background-color: rgba(255, 255, 255, 0.8); /* Add a semi-transparent white background */
+	padding: 20px;
+	border: 2px solid rgba(0, 0, 0, 0.8);
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.grid-item img {
+	max-width: 100%;
+	height: auto;
+}
+.grid-item h1 {
+	margin: 10px 0;
+	font-size: 1.2em; /* Adjust the font size as needed */
+}
+.grid-item button {
+	background: transparent;
+	color: black; /* Blue text color */
+	font-weight: bold;
+	font-family: mont-reg;
+	border: 2px solid #003166; /* Blue border */
+	padding: 10px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: 0.3s, color 0.3s; /* Transition effect for background and text color */
+}
+.grid-item button:hover {
+	background: radial-gradient(circle, rgba(155,210,195,1) 0%, rgba(103,179,182,1) 47%, rgba(68,151,176,1) 77%);
+	color: #fff; /* White text color on hover */
 }
 
 /* ---------------------------------------------------- Map CSS ---------------------------------------------------*/
