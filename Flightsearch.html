@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Flight Information</title>
+  <link rel="stylesheet" href="Style/style.css">
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <div class="navigation">
+    <nav>
+        <input type="checkbox" id="show-search">
+        <input type="checkbox" id="show-menu">
+        <div class="content">
+            <div class="logo"><a href="#">SINGKO</a></div>
+            <ul class="links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="destination.html">Destination</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<!-- Landing Page -->
+<div class="landing">
+    <!-- Slideshow Container -->
+    <div class="slideshow-container-index">
+        <img src="Images/siar.jpg" class="mySlide" />
+        <img src="Images/siar-head.jpg" class="mySlide" />
+        <img src="Images/cloud9.jpg" class="mySlide" />
+        <img src="Images/nakedisland.jpg" class="mySlide" />
+        <img src="Images/sugba.jpg" class="mySlide" />
+        <img src="Images/sohotoon.jpg" class="mySlide" />
+        <img src="Images/guyam.jpg" class="mySlide" />
+        <img src="Images/daku.jpg" class="mySlide" />
+        <img src="Images/pacifico.jpg" class="mySlide" />
+        <img src="Images/rockpools.jpg" class="mySlide" />
+        <img src="Images/secret.jpg" class="mySlide" />
+        <img src="Images/taktak.jpg" class="mySlide" />
+        <img src="Images/alegria.jpg" class="mySlide" />
+        <img src="Images/blue.jpg" class="mySlide" />
+        <img src="Images/cave.jpg" class="mySlide" />
+        <img src="Images/corre.jpg" class="mySlide" />
+        <!-- Add more images as needed -->
+    </div>
+    <h1>Search Available Flights</h1>
+    <h2>Explore the beautiful sceneries Siargao has to offer!</h2>
+    <br>
+  <br>
+  <div class="search-container">
+    <form action="#">
+        <input type="text" placeholder="Search available Flights" name="search" id="searchInput">
+<button type="button" id="searchButton">Search Flights</button>
+<div id="results"></div>
+
+        <br>
+    </form>
+</div>
+  
+
+</div>
+  <!-- Include the separate JavaScript file -->
+  <script src="flights-test.js"></script>
+</body>
+<script>
+   const xmlString = `Flightsearch.html`;
+
+// Parse the XML string to an XML document
+const parser = new DOMParser();
+const xmlDoc = parser.parseFromString(xmlString, "text/xml");
+
+// Get all FlightDetails elements
+const flightDetailsElements = xmlDoc.getElementsByTagName("FlightDetails");
+
+// Function to filter flights based on user input
+function filterFlights(searchTerm) {
+    const filteredFlights = Array.from(flightDetailsElements).filter(flight => {
+        const departureAirportCode = flight.getAttribute("FLSDepartureCode");
+        const arrivalAirportCode = flight.getAttribute("FLSArrivalCode");
+        
+        // Check if the flight matches the search term (case-insensitive)
+        return departureAirportCode.toLowerCase().includes(searchTerm.toLowerCase()) ||
+               arrivalAirportCode.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+
+    return filteredFlights;
+}
+
+// Function to display filtered flights
+function displayFilteredFlights(filteredFlights) {
+    const resultsDiv = document.getElementById("results");
+    resultsDiv.innerHTML = ""; // Clear previous results
+    
+    if (filteredFlights.length === 0) {
+        resultsDiv.textContent = "No matching flights found.";
+    } else {
+        filteredFlights.forEach(flight => {
+            const flightNumber = flight.querySelector("FlightLegDetails").getAttribute("FlightNumber");
+            const departureAirport = flight.getAttribute("FLSDepartureCode");
+            const arrivalAirport = flight.getAttribute("FLSArrivalCode");
+            const flightInfo = `Flight ${flightNumber}: ${departureAirport} to ${arrivalAirport}`;
+            
+            const flightDiv = document.createElement("div");
+            flightDiv.textContent = flightInfo;
+            resultsDiv.appendChild(flightDiv);
+        });
+    }
+}
+
+// Add event listener to the search button
+const searchButton = document.getElementById("searchButton");
+searchButton.addEventListener("click", () => {
+    const searchInput = document.getElementById("searchInput").value;
+    const filteredFlights = filterFlights(searchInput);
+    displayFilteredFlights(filteredFlights);
+});
+
+
+    </script>
+</html>
