@@ -320,10 +320,27 @@ nav .content .links {
 
 
 /* ------------------------------------------- Destination ---------------------------------------------*/
+.destinations {
+	background: linear-gradient(180deg, rgba(242,232,207,1) 0%, rgba(26,117,159,1) 60%, rgba(31,76,106,1) 79%);
+}
+.destinations .title {
+	font-family: bara;
+	text-align: center;
+	font-size: 85px;
+	padding-top: 30px;
+	padding-bottom: 14px;
+	color: white;
+	text-shadow: 13px 11px #000000da;
+}
+.destinations h2 {
+	font-family: alt-med;
+	font-size: 25px;
+	text-align: center;
+	padding-bottom: 30px;
+}
 .grid-container {
 	display: grid;
 	grid-template-columns: auto auto auto;
-	background: linear-gradient(180deg, rgba(242,232,207,1) 0%, rgba(26,117,159,1) 60%, rgba(31,76,106,1) 79%);
 	column-gap: 20px;
 	padding: 20px;
 	row-gap: 20px;
