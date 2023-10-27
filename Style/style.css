@@ -53,6 +53,7 @@ nav .content .links {
   font-size: 35px;
   font-weight: 600;
   font-family: bara;
+  text-shadow: 5px 5px #000000da;
 }
 
 .content .links li {

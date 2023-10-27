@@ -1,0 +1,260 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* -------------------------------------------- Font Styles -----------------------------------------------*/
+@font-face {
+  font-family: bara;
+  src: url(../Resources/BARABARA.otf);
+}
+@font-face {
+  font-family: mont-reg;
+  src: url(../Resources/Montserrat-Regular.otf)
+}
+@font-face {
+  font-family: alt-med;
+  src: url(../Resources/MontserratAlternates-MediumItalic.otf)
+}
+
+/* ------------------------------------------- Navigation Bar ---------------------------------------------*/
+.navigation {
+  height: 70px;
+  background: linear-gradient(315deg, rgba(217, 237, 146, 1) 5%, rgba(181, 228, 140, 1) 15%, rgba(153, 217, 140, 1) 27%, rgba(118, 200, 147, 1) 39%, rgba(82, 182, 154, 1) 51%, rgba(52, 160, 164, 1) 61%, rgba(26, 117, 159, 1) 73%, rgba(30, 96, 145, 1) 86%, rgba(24, 78, 119, 1) 100%);
+  text-align: center;
+  width: 100%;
+}
+.navigation nav {
+  position: relative;
+  display: flex;
+  max-width: calc(100% - 200px);
+  margin: 0 auto;
+  height: 70px;
+  align-items: center;
+  justify-content: space-between;
+}
+nav .content {
+  display: flex;
+  align-items: center;
+}
+nav .content .links {
+  margin-left: 60px;
+  display: flex;
+}
+.content .logo a {
+  color: white;
+  font-size: 35px;
+  font-weight: 600;
+  font-family: bara;
+  text-shadow: 5px 5px #000000da;
+}
+.content .links li {
+  list-style: none;
+  line-height: 70px;
+}
+.content .links li a,
+.content .linkss li label {
+  color: white;
+  font-size: 18px;
+  font-family: mont-reg;
+  font-weight: bolder;
+  padding: 9px 17px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+.content .links li label {
+  display: none;
+}
+.content .links li a:hover,
+.content .links li label:hover {
+  background: #adc8ff8e;
+}
+.navigation input[type="checkbox"] {
+  display: none;
+}
+.navigation .search-container {
+  float: right;
+}
+.navigation input[type=text] {
+  padding: 6px;
+  font-family: mont-reg;
+  font-size: 14px;
+  border: none;
+}
+.navigation .search-container button {
+  float: right;
+  padding: 6px;
+  margin-right: 8px;
+  background: #ddd;
+  font-size: 14px;
+  font-family: mont-reg;
+  border: none;
+  cursor: pointer;
+}
+.navigation .search-container button:hover {
+  background: #ccc;
+}
+.content .links ul {
+  position: absolute;
+  background: #171c24;
+  top: 80px;
+  z-index: -1;
+  opacity: 0;
+  visibility: hidden;
+}
+.content .links li:hover>ul {
+  top: 70px;
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.3s ease;
+}
+.content .links ul li a {
+  display: block;
+  width: 100%;
+  line-height: 30px;
+  border-radius: 0px !important;
+}
+.content .links ul ul {
+  position: absolute;
+  top: 0;
+  right: calc(-100% + 8px);
+}
+.content .links ul li {
+  position: relative;
+}
+.content .links ul li:hover ul {
+  top: 0;
+}
+.locate-button {
+  position: absolute;
+  bottom: 20px;
+  /* Adjust the bottom value to set the distance from the bottom edge */
+  right: 20px;
+  /* Adjust the right value to set the distance from the right edge */
+  z-index: 1000;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  padding-top: 60px;
+}
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* ------------------------------------------- Pacifico Beach ---------------------------------------------*/
+#map {
+  width: 100%;
+  height: 500px;
+  border: 1px solid #000000;
+}
+
+#flights {
+  width: 100%;
+  height: 500px;
+  border: 1px solid #000000;
+}
+
+/* Main container styles */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 1800px;
+  background: #f7f0d3;
+  margin-bottom: 10px;
+  border: 1px solid #000000;
+}
+
+.grid-scroll-container {
+  overflow: auto;
+  max-height: 80vh;
+  row-gap: 20px;
+}
+
+/* Grid item styles */
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 10px;
+  border: 1px solid #000000;
+}
+.grid-item h1 {
+  text-align: center;
+}
+
+/* Image container and image styles */
+.image-container {
+  width: 100%;
+  max-height: 50vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Text container styles */
+.text-container {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 0 0 10px 10px;
+}
+.grid-item h1 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+.grid-item p {
+  font-size: 1em;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .grid-container {
+      grid-template-columns: 1fr;
+      padding: 10px;
+  }
+}
