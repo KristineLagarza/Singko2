@@ -237,7 +237,7 @@ nav .content .links {
 .slideshow-container-index {
 	position: relative;
 	max-width: 50%;
-	max-height: 500px; 
+	max-height: 550px; 
 	overflow: hidden;
 	margin-left: 10px;
 	margin-top: 10px;
@@ -247,8 +247,10 @@ nav .content .links {
 }
 .mySlide {
 	display: none;
-	width: 750px; 
-	height: 500px; 
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 50%;
   }
 .dest-button {
   background: transparent;
@@ -271,12 +273,14 @@ nav .content .links {
 	height: 1060px;
 	background: url(../Images/bg1.jpg);
 	background-repeat: no-repeat;
-	background-size: 1550px 1060px;
+	background-size: cover;
 }
+
 .about-head-cont {
 	height: 120px;
 	padding-top: 15px;
 }
+
 .about-head-cont h1 {
 	font-family: bara;
 	text-align: center;
@@ -285,6 +289,7 @@ nav .content .links {
 	padding-bottom: 50px;
 	text-shadow: 7px 7px #ffffffda;
 }
+
 .about-container {
 	background: linear-gradient(140deg, rgba(251,209,162,0.5) 9%, rgba(125,207,182,0.5) 38%, rgba(0,178,202,0.5) 63%, rgba(29,78,137,0.5) 89%);
 	margin-top: 60px;
@@ -300,12 +305,14 @@ nav .content .links {
 	border-style: solid;
 	border-color: #003560;
 }
+
 .about-container p {
 	font-size: 22px;
 	font-family: mont-reg;
 	text-indent: 10%;
 	font-weight: bold;
 }
+
 .slideshow-container {
 	position: relative;
 	max-width: 50%;
@@ -316,15 +323,18 @@ nav .content .links {
 	padding-top: 20px;
 	padding-bottom: 20px;
 }
+
 .slideshow-content {
 	display: flex;
 	transition: transform 1s;
 	align-items: center;
 	justify-content: center;
 }
+
 .mySlides {
 	width: 100%;
 	max-height: 500px;
+	border-radius: 15px;
 }
 
 
@@ -1063,10 +1073,10 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 /* ------------------------------------------------------ Contact US --------------------------------------------------*/
 .contact {
-	height: 629px;
+	height: 100vh;
 	background: url(../Images/bg3.jpg);
 	background-repeat: no-repeat;
-	background-size: 1550px 700px;
+	background-size: cover;
 }
 .contact-cont {
 	padding-top: 120px;
@@ -1119,10 +1129,11 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	margin-right: 10px;
 }
 .footer {
-	background-color: #000;
-	color: #fff;
-	text-align: center;
-	padding: 10px 0;
+  background: linear-gradient(315deg, rgba(217,237,146,1) 5%, rgba(181,228,140,1) 15%, rgba(153,217,140,1) 27%, rgba(118,200,147,1) 39%, rgba(82,182,154,1) 51%, rgba(52,160,164,1) 61%, rgba(26,117,159,1) 73%, rgba(30,96,145,1) 86%, rgba(24,78,119,1) 100%);
+  color: white; 
+  text-align: center;
+  padding: 10px 0; 
+  font-weight: bold;
 }
 /* ---------------------------------------------------- Flight CSS ---------------------------------------------------*/
 #userInputForm {
