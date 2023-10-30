@@ -19,13 +19,5 @@ navigator.geolocation.getCurrentPosition(function (position) {
 });
 
 
-document.addEventListener("DOMContentLoaded", function() {
-    var navigateButton = document.getElementById("navigateButton");
-
-    navigateButton.addEventListener("click", function() {
-        // Redirect to cloud9map.html when the button is clicked
-        window.location.href = "C:/Users/Coach Rai/Desktop/Singko2/Destinations";
-    });
-});
 
 

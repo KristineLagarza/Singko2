@@ -10,10 +10,10 @@ navigator.geolocation.getCurrentPosition(function (position) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
 
-    L.marker([9.7651, 126.1679]).addTo(map)
+    L.marker([9.7412, 126.1640]).addTo(map)
         .bindPopup('Your Location').openPopup();
 
-    map.setView([9.7651, 126.1679], 13); // Set map center to user's location
+    map.setView([9.7412, 126.1640], 13); // Set map center to user's location
 }, function (error) {
     console.error('Error getting geolocation:', error);
 });
