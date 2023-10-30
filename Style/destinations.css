@@ -258,3 +258,27 @@ nav .content .links {
       padding: 10px;
   }
 }
+
+/* ------------------------------------------- Cloud9 ---------------------------------------------*/
+
+
+.destination {
+  position: relative;
+	background-color: rgba(255, 255, 255, 0.8); /* Add a semi-transparent white background */
+	padding: 20px;
+	border: 2px solid rgba(0, 0, 0, 0.8);
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.destination a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.destination a:hover {
+  color: #ff4500;
+}

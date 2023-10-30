@@ -390,7 +390,6 @@ nav .content .links {
 }
 
 /* ---------------------------------------------------- Map CSS ---------------------------------------------------*/
-/* required styles */
 html, body {
   height: 100%;
   margin: 0;
@@ -1050,7 +1049,8 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	margin-left: -12px;
 	border-right-color: #fff;
 	}
-  /* Printing */
+
+/* Printing */
 
 @media print {
 	/* Prevent printers from removing background-images of controls. */
