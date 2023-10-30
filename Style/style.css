@@ -1154,11 +1154,44 @@ svg.leaflet-image-layer.leaflet-interactive path {
   button[type="button"]:hover {
 	background-color: #45a049;
   }
-
+  
   #results {
-    color: white;
-    /* Add additional styles as needed */
-}
+	color: white;
+	/* Add additional styles as needed */
+  }
+  
+  #flights-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	height: auto; /* Remove the fixed height to allow content to push it down */
+	margin-top: 350px; /* Adjust the margin as needed */
+  }
+  
+  .flight-info {
+	background: linear-gradient(140deg, rgba(251, 209, 162, 0.5) 9%, rgba(125, 207, 182, 0.5) 38%, rgba(0, 178, 202, 0.5) 63%, rgba(29, 78, 137, 0.5) 89%);
+	width: calc(30% - 20px); /* Adjust width as needed */
+	margin: 10px;
+	border: 1px solid #ccc;
+	padding: 20px;
+	display: flex;
+	flex-direction: column; /* Stack content vertically */
+	align-items: center; /* Center horizontally */
+	justify-content: center; /* Center vertically */
+	text-align: center;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .flight-info h2 {
+	font-size: 1.5rem;
+	color: #000;
+  }
+  
+  .flight-info p {
+	margin: 2px 0;
+  }
+  
 /* ---------------------------------------------------- Media Query ---------------------------------------------------*/
 /* Navigation Bar Query */
 @media screen and (max-width: 1250px) {
