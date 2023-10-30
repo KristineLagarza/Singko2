@@ -1073,10 +1073,10 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 /* ------------------------------------------------------ Contact US --------------------------------------------------*/
 .contact {
-	height: 629px;
+	height: 100vh;
 	background: url(../Images/bg3.jpg);
 	background-repeat: no-repeat;
-	background-size: 1550px 700px;
+	background-size: cover;
 }
 .contact-cont {
 	padding-top: 120px;
@@ -1129,10 +1129,11 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	margin-right: 10px;
 }
 .footer {
-	background-color: #000;
-	color: #fff;
-	text-align: center;
-	padding: 10px 0;
+  background: linear-gradient(315deg, rgba(217,237,146,1) 5%, rgba(181,228,140,1) 15%, rgba(153,217,140,1) 27%, rgba(118,200,147,1) 39%, rgba(82,182,154,1) 51%, rgba(52,160,164,1) 61%, rgba(26,117,159,1) 73%, rgba(30,96,145,1) 86%, rgba(24,78,119,1) 100%);
+  color: white; 
+  text-align: center;
+  padding: 10px 0; 
+  font-weight: bold;
 }
 /* ---------------------------------------------------- Flight CSS ---------------------------------------------------*/
 #userInputForm {
