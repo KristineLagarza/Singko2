@@ -410,6 +410,8 @@ html, body {
   height: calc(96vh - 40px);
 }
 
+/* required styles */
+
 .leaflet-pane,
 .leaflet-tile,
 .leaflet-marker-icon,
@@ -1069,6 +1071,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 		print-color-adjust: exact;
 		}
 	}
+
 
 
 /* ------------------------------------------------------ Contact US --------------------------------------------------*/
