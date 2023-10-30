@@ -262,23 +262,23 @@ nav .content .links {
 /* ------------------------------------------- Cloud9 ---------------------------------------------*/
 
 
-.destination {
-  position: relative;
-	background-color: rgba(255, 255, 255, 0.8); /* Add a semi-transparent white background */
-	padding: 20px;
-	border: 2px solid rgba(0, 0, 0, 0.8);
-	text-align: center;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
+.dest-button-container {
+  text-align: center;
+  margin-top: 20px;
 }
 
-.destination a {
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
+.dest-button {
+  background: #87CEEB;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 10px 20px;
+  font-size: 18px;
+  border: 2px solid #87CEEB;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.destination a:hover {
-  color: #ff4500;
+.dest-button:hover {
+  background: #007BFF;
+  color: rgba(255, 255, 255, 0.8);
 }
