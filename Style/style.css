@@ -84,28 +84,34 @@ nav .content .links {
 .navigation input[type="checkbox"] {
   display: none;
 }
-
 .navigation .search-container {
-  float: right;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	margin-left: auto;
+	margin-right: 20px;
 }
 
-.navigation input[type=text] {
-  padding: 6px;
-  font-family: mont-reg;
-  font-size: 14px;
-  border: none;
-}
+.navigation input[type="text"] {
+	padding: 6px;
+	font-family: mont-reg;
+	font-size: 14px;
+	border: none;
+	margin-right: 8px;
+	margin-top: 15px;
+	width: 200px;
+  }
 
-.navigation .search-container button {
-  float: right;
-  padding: 6px;
-  margin-right: 8px;
-  background: #ddd;
-  font-size: 14px;
-  font-family: mont-reg;
-  border: none;
-  cursor: pointer;
-}
+  .navigation .search-container button {
+	display: inline-block;
+	padding: 6px;
+	background: #ddd;
+	font-size: 14px;
+	font-family: mont-reg;
+	border: none;
+	cursor: pointer;
+	border-radius: 5px;
+  }
 
 .navigation .search-container button:hover {
   background: #ccc;
