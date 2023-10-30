@@ -247,8 +247,8 @@ nav .content .links {
 }
 .mySlide {
 	display: none;
-	width: 100%; /* specify the width for the images */
-	height: 500px; /* specify the height for the images */
+	width: 750px; 
+	height: 500px; 
   }
 .dest-button {
   background: transparent;
