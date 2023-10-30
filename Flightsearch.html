@@ -47,16 +47,27 @@
         <!-- Add more images as needed -->
     </div>
     <h1>Search Available Flights</h1>
-    <h2>Explore the beautiful sceneries Siargao has to offer!</h2>
-    <br>
-  <br>
+    <h2>Explore the beautiful sceneries Siargao has to offer!</h2><br>
+        <!-- Form for user input -->
+    <form id="userInputForm">
+        <label for="departureDate">Departure Date:</label>
+        <input type="date" id="departureDate" required><br>
+        
+        <button type="button" id="submitButton">Submit</button>
+    </form>
+
+    <div id="flights-container">
+        <!-- Flight details will be inserted here by JavaScript -->
+    </div>
+  <!-- <br>
   <button id="buttonF" onclick="searchDatesWithoutFlights()">Search Dates Without Flights</button>
   <div id="result"></div>  
 
         <br>
-    </form>
+    </form> -->
 </div>
 </body>
+<script src="JavaScript/flights.js"></script>
 <script>
 function searchDatesWithoutFlights() {
     // Load XML data from flights.xml
