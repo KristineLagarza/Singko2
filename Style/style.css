@@ -237,7 +237,7 @@ nav .content .links {
 .slideshow-container-index {
 	position: relative;
 	max-width: 50%;
-	max-height: 500px; 
+	max-height: 550px; 
 	overflow: hidden;
 	margin-left: 10px;
 	margin-top: 10px;
@@ -247,8 +247,10 @@ nav .content .links {
 }
 .mySlide {
 	display: none;
-	width: 750px; 
-	height: 500px; 
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 50%;
   }
 .dest-button {
   background: transparent;
