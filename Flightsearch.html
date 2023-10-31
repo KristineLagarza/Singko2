@@ -1,71 +1,77 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Flight Information</title>
-  <link rel="stylesheet" href="Style/style.css">
-  <title>Search Dates Without Flights</title>
+    <link rel="shortcut icon" type="x-icon" href="Images/icon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siargao Flights</title>
+    <link rel="stylesheet" href="Style/style.css">
+    <!-- <title>Search Dates Without Flights</title> -->
 </head>
+
 <body>
-  <!-- Navigation Bar -->
-  <div class="navigation">
-    <nav>
-        <input type="checkbox" id="show-search">
-        <input type="checkbox" id="show-menu">
-        <div class="content">
-            <div class="logo"><a href="#">SINGKO</a></div>
-            <ul class="links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="../Singko2/Destination/about.html">About</a></li>
-                <li><a href="destination.html">Destination</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="flightSearch.html">Available Flights</a></li>
-            </ul>
+    <!-- Navigation Bar -->
+    <div class="navigation">
+        <nav>
+            <input type="checkbox" id="show-search">
+            <input type="checkbox" id="show-menu">
+            <div class="content">
+                <div class="logo"><a href="#">SINGKO</a></div>
+                <ul class="links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="../Singko2/Destination/about.html">About</a></li>
+                    <li><a href="destination.html">Destination</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="flightSearch.html">Available Flights</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Landing Page -->
+    <div class="landing">
+        <!-- Slideshow Container -->
+        <div class="slideshow-container-index">
+            <img src="Images/siar.jpg" class="mySlide" />
+            <img src="Images/siar-head.jpg" class="mySlide" />
+            <img src="Images/cloud9.jpg" class="mySlide" />
+            <img src="Images/nakedisland.jpg" class="mySlide" />
+            <img src="Images/sugba.jpg" class="mySlide" />
+            <img src="Images/sohotoon.jpg" class="mySlide" />
+            <img src="Images/guyam.jpg" class="mySlide" />
+            <img src="Images/daku.jpg" class="mySlide" />
+            <img src="Images/pacifico.jpg" class="mySlide" />
+            <img src="Images/rockpools.jpg" class="mySlide" />
+            <img src="Images/secret.jpg" class="mySlide" />
+            <img src="Images/taktak.jpg" class="mySlide" />
+            <img src="Images/alegria.jpg" class="mySlide" />
+            <img src="Images/blue.jpg" class="mySlide" />
+            <img src="Images/cave.jpg" class="mySlide" />
+            <img src="Images/corre.jpg" class="mySlide" />
+            <!-- Add more images as needed -->
         </div>
-    </nav>
-</div>
-
-<!-- Landing Page -->
-<div class="landing">
-    <!-- Slideshow Container -->
-    <div class="slideshow-container-index">
-        <img src="Images/siar.jpg" class="mySlide" />
-        <img src="Images/siar-head.jpg" class="mySlide" />
-        <img src="Images/cloud9.jpg" class="mySlide" />
-        <img src="Images/nakedisland.jpg" class="mySlide" />
-        <img src="Images/sugba.jpg" class="mySlide" />
-        <img src="Images/sohotoon.jpg" class="mySlide" />
-        <img src="Images/guyam.jpg" class="mySlide" />
-        <img src="Images/daku.jpg" class="mySlide" />
-        <img src="Images/pacifico.jpg" class="mySlide" />
-        <img src="Images/rockpools.jpg" class="mySlide" />
-        <img src="Images/secret.jpg" class="mySlide" />
-        <img src="Images/taktak.jpg" class="mySlide" />
-        <img src="Images/alegria.jpg" class="mySlide" />
-        <img src="Images/blue.jpg" class="mySlide" />
-        <img src="Images/cave.jpg" class="mySlide" />
-        <img src="Images/corre.jpg" class="mySlide" />
-        <!-- Add more images as needed -->
-    </div>
-    <h1>SEARCH AVAILABLE FLIGHTS</h1>
-    <h2>Check for available flights now!</h2><br>
+        <h1>SEARCH AVAILABLE FLIGHTS</h1>
+        <h2>Check for available flights now!</h2><br>
         <!-- Form for user input -->
-    <form id="userInputForm">
-        <label for="departureDate">Departure Date:</label>
-        <input type="date" id="departureDate" required><br>
-        
-        <button type="button" id="submitButton">Submit</button>
-    </form>
+        <form id="userInputForm">
+            <label for="departureDate">Departure Date:</label>
+            <input type="date" id="departureDate" required><br>
 
-    <div id="flights-container">
-        <!-- Flight details will be inserted here by JavaScript -->
-    </div>
-  <!-- <br>
+            <button type="button" id="submitButton">Submit</button>
+        </form>
+
+        <div id="flights-container">
+            <!-- Flight details will be inserted here by JavaScript -->
+        </div>
+        <!-- <br>
   <button id="buttonF" onclick="searchDatesWithoutFlights()">Search Dates Without Flights</button>
   <div id="result"></div>  
 
         <br>
     </form> -->
-</div>
+    </div>
 </body>
-    <script src="JavaScript/flights.js"></script>
+<script src="JavaScript/flights.js"></script>
+
 </html>
