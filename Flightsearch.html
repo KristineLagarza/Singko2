@@ -67,43 +67,5 @@
     </form> -->
 </div>
 </body>
-<script src="JavaScript/flights.js"></script>
-<script>
-function searchDatesWithoutFlights() {
-    // Load XML data from flights.xml
-    var xhttp = new XMLHttpRequest();
-        xhttp.open("GET", "flights.xml", true);
-        xhttp.send();
-
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            // Parse XML data
-            var xmlDoc = this.responseXML;
-
-            // Get all unique dates from the XML data
-            var datesWithFlights = Array.from(xmlDoc.querySelectorAll("Flight")).map(flight => flight.getAttribute("Date"));
-            var uniqueDatesWithFlights = [...new Set(datesWithFlights)];
-
-            // Get all dates within a specific range (modify this according to your requirement)
-            var startDate = new Date("2023-01-01");
-            var endDate = new Date("2023-12-31");
-            var allDatesInRange = [];
-
-            for (var currentDate = startDate; currentDate <= endDate; currentDate.setDate(currentDate.getDate() + 1)) {
-                allDatesInRange.push(currentDate.toISOString().split("T")[0]);
-            }
-
-            // Find dates without flights
-            var datesWithoutFlights = allDatesInRange.filter(date => !uniqueDatesWithFlights.includes(date));
-
-            // Display the result
-            var resultDiv = document.getElementById("result");
-            resultDiv.innerHTML = "Dates without flights: " + datesWithoutFlights.join(", ");
-        }
-    };
-    xhttp.open("GET", "flights.xml", true);
-    xhttp.send();
-}
-
-    </script>
+    <script src="JavaScript/flights.js"></script>
 </html>

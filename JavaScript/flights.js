@@ -1,14 +1,3 @@
-//to be modified or deleted
-// function submitUserInput() {
-//     // Get user input values
-//     const departureDate = document.getElementById('departureDate').value;
-  
-//     // displays the departure date and flight type of user
-//     const flightInfoDiv = document.getElementById('flightInfo');
-//   }
-  
-//   document.getElementById('submitButton').addEventListener('click', submitUserInput);
-  
   // Get references to the relevant elements
 const userInputForm = document.getElementById("userInputForm");
 const departureDateInput = document.getElementById("departureDate");
