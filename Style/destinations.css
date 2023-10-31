@@ -175,38 +175,15 @@ nav .content .links {
   cursor: pointer;
 }
 
-/* ------------------------------------------- Pacifico Beach ---------------------------------------------*/
-#map {
-  width: 100%;
-  height: 500px;
-  border: 1px solid #000000;
-}
-
-#flights {
-  width: 100%;
-  height: 500px;
-  border: 1px solid #000000;
-}
-
-/* Main container styles */
+/* ------------------------------------------- Buttons ---------------------------------------------*/
 .grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
   padding: 20px;
-  max-width: 1800px;
+  /* max-width: 1800px; */
   background: #f7f0d3;
-  margin-bottom: 10px;
-  border: 1px solid #000000;
 }
-
-.grid-scroll-container {
-  overflow: auto;
-  max-height: 80vh;
-  row-gap: 20px;
-}
-
-/* Grid item styles */
 .grid-item {
   background-color: rgba(255, 255, 255, 0.9);
   padding: 20px;
@@ -215,12 +192,15 @@ nav .content .links {
   justify-content: space-between;
   border-radius: 10px;
   border: 1px solid #000000;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 100px;
+  margin-right: 100px;
 }
 .grid-item h1 {
   text-align: center;
 }
 
-/* Image container and image styles */
 .image-container {
   width: 100%;
   max-height: 50vh;
@@ -237,21 +217,27 @@ nav .content .links {
   border-radius: 10px;
 }
 
-/* Text container styles */
 .text-container {
   background-color: rgba(255, 255, 255, 0.9);
-  padding: 20px;
+  padding: 30px;
   border-radius: 0 0 10px 10px;
+  text-indent: 5%;
+  text-align: justify;
 }
 .grid-item h1 {
-  font-size: 1.5em;
+  font-size: 40px;
   margin-bottom: 10px;
+  font-family: bara;
 }
 .grid-item p {
-  font-size: 1em;
+  font-size: 20px;
+  font-family: mont-reg;
+  padding-left: 20px;
+  padding-right: 20px;
+  line-height: 1.8;
+  margin-bottom: 30px;
 }
 
-/* Responsive design for smaller screens */
 @media (max-width: 768px) {
   .grid-container {
       grid-template-columns: 1fr;
@@ -260,8 +246,6 @@ nav .content .links {
 }
 
 /* ------------------------------------------- Cloud9 ---------------------------------------------*/
-
-
 .dest-button-container {
   text-align: center;
   margin-top: 20px;
@@ -269,7 +253,7 @@ nav .content .links {
 
 .dest-button {
   background: #87CEEB;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(0, 0, 0, 0.8);
   padding: 10px 20px;
   font-size: 18px;
   border: 2px solid #87CEEB;
@@ -280,5 +264,5 @@ nav .content .links {
 
 .dest-button:hover {
   background: #007BFF;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgb(255, 255, 255);
 }
