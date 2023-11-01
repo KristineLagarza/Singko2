@@ -11,7 +11,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
     var longitude = position.coords.longitude;
 
     L.marker([10.044302084869768, 126.04327895254983]).addTo(map)
-        .bindPopup('Your Location').openPopup();
+        .bindPopup('Secret Beach').openPopup();
 
     map.setView([10.044302084869768, 126.04327895254983], 13); // Set map center location
 }, function (error) {
