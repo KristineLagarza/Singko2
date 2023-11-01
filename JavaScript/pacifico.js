@@ -13,7 +13,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
     L.marker([9.9446 , 126.1030]).addTo(map)
         .bindPopup('Your Location').openPopup();
 
-    map.setView([9.9446, 126.1030], 13); // Set map center to user's location
+    map.setView([9.9446, 126.1030], 13); // Set map center to location
 }, function (error) {
     console.error('Error getting geolocation:', error);
 });

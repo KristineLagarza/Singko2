@@ -1,3 +1,5 @@
+/*Editor: Allan
+Code represents the map API which you have to get geolocation of the destination by inputing the longitude and latitude*/
 src="https://unpkg.com/leaflet/dist/leaflet.js"
 
 var map = L.map('map').setView([0, 0], 13);
@@ -11,9 +13,9 @@ navigator.geolocation.getCurrentPosition(function (position) {
     var longitude = position.coords.longitude;
 
     L.marker([9.812262, 126.163485]).addTo(map)
-        .bindPopup('Your Location').openPopup();
+        .bindPopup('Cloud 9').openPopup();
 
-    map.setView([9.812262, 126.163485], 13); // Set map center to user's location
+    map.setView([9.812262, 126.163485], 13); // Set map center to location
 }, function (error) {
     console.error('Error getting geolocation:', error);
 });
