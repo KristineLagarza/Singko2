@@ -11,7 +11,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
     var longitude = position.coords.longitude;
 
     L.marker([9.7651, 126.1679]).addTo(map)
-        .bindPopup('Your Location').openPopup();
+        .bindPopup('Guyam Island').openPopup();
 
     map.setView([9.7651, 126.1679], 13); // Set map center to user's location
 }, function (error) {
