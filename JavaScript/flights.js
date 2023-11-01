@@ -14,7 +14,7 @@ document.getElementById("submitButton").addEventListener("click", function() {
     fetch(url, {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': '652e1212b4msh02c7ed11051a093p1e77e2jsn34016fc1b090',
+      'X-RapidAPI-Key': 'bec3f6579dmshed7a99e8de6aab5p1a23bejsnc1b1f3d4ce26',
       'X-RapidAPI-Host': 'timetable-lookup.p.rapidapi.com'
     }
   })
