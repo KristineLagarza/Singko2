@@ -11,7 +11,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
     var longitude = position.coords.longitude;
 
     L.marker([9.694875221431383, 126.07772280386705]).addTo(map)
-        .bindPopup('Your Location').openPopup();
+        .bindPopup('Corregidor Island').openPopup();
 
     map.setView([9.694875221431383, 126.07772280386705], 13); // Set map center to location
 }, function (error) {
