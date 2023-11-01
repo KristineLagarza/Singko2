@@ -11,7 +11,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
     var longitude = position.coords.longitude;
 
     L.marker([10.034367090392347, 126.0436493139272]).addTo(map)
-        .bindPopup('Your Location').openPopup();
+        .bindPopup('Taktak Falls').openPopup();
 
     map.setView([10.034367090392347, 126.0436493139272], 13); // Set map center to location
 }, function (error) {
