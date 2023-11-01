@@ -11,7 +11,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
     var longitude = position.coords.longitude;
 
     L.marker([8.6708, 126.1919]).addTo(map)
-        .bindPopup('Your Location').openPopup();
+        .bindPopup('Naked Island').openPopup();
 
     map.setView([8.6708, 126.1919], 13); // Set map center to user's location
 }, function (error) {
