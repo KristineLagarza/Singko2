@@ -11,7 +11,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
     var longitude = position.coords.longitude;
 
     L.marker([9.861401404387276, 126.06300392556523]).addTo(map)
-        .bindPopup('Your Location').openPopup();
+        .bindPopup('Tayangban Cave Pool').openPopup();
 
     map.setView([9.861401404387276, 126.06300392556523], 13); // Set map center to location
 }, function (error) {
