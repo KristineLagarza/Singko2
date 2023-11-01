@@ -11,7 +11,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
     var longitude = position.coords.longitude;
 
     L.marker([9.821638792563096, 126.0563571004343]).addTo(map)
-        .bindPopup('Your Location').openPopup();
+        .bindPopup('Maasin Enchanted River').openPopup();
 
     map.setView([9.821638792563096, 126.0563571004343], 13); // Set map center to  location
 }, function (error) {
