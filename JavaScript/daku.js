@@ -11,7 +11,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
     var longitude = position.coords.longitude;
 
     L.marker([9.7412, 126.1640]).addTo(map)
-        .bindPopup('Your Location').openPopup();
+        .bindPopup('Daku Island').openPopup();
 
     map.setView([9.7412, 126.1640], 13); // Set map center to user's location
 }, function (error) {
