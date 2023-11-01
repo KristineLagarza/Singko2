@@ -1,14 +1,22 @@
+ /**
+  *  Author/s: ODENEIL BELEN
+  */ 
+  
   // Get references to the relevant elements
 const userInputForm = document.getElementById("userInputForm");
 const departureDateInput = document.getElementById("departureDate");
 
 // Add an event listener to the "Submit" button
+// Get the chosen date from the input field
+// Parse the XML data obtained from the API to a DOM object
+// Extract flight details and convert some information to be readable by users
+// Displays the flight information 
+
 document.getElementById("submitButton").addEventListener("click", function() {
-    // Get the chosen date from the input field
+    
     const chosenDate = departureDateInput.value;
     const newChosenDate = chosenDate.replace(/-/g, '');
     console.log(newChosenDate);
-    // Construct the URL with the chosen date
     const url = `https://timetable-lookup.p.rapidapi.com/TimeTable/MNL/IAO/${newChosenDate}/?7Day=Y`;
 
     fetch(url, {
@@ -26,16 +34,16 @@ document.getElementById("submitButton").addEventListener("click", function() {
       }
     })
     .then(result => {
-           // Parse the XML string to a DOM object
+           
            const parser = new DOMParser();
            const xmlDoc = parser.parseFromString(result, 'text/xml');
        
-           // Extract flight details
+           
            const flightDetails = xmlDoc.querySelectorAll('FlightDetails');
            const flightInfo = [];
        
            flightDetails.forEach(flightDetail => {
-             // convert some information to be readable by users
+             
              let daysOfFlight = flightDaysToDayOfWeek(flightDetail.getAttribute('FLSFlightDays'));
              let tripInfo = convertTripInfo(flightDetail.getAttribute('TotalTripTime'), flightDetail.getAttribute('TotalFlightTime'), flightDetail.getAttribute('FLSDepartureDateTime'), flightDetail.getAttribute('FLSArrivalDateTime'));
              let kmInfo = milesToKilometers(flightDetail.getAttribute('TotalMiles'));
@@ -56,12 +64,10 @@ document.getElementById("submitButton").addEventListener("click", function() {
                FlightDays: daysOfFlight,
              };
        
-             // You can add more attributes as needed
-       
              flightInfo.push(flight);
            });
        
-           // Display flight information
+           
            const flightInfoDiv = document.getElementById('flights-container');
            flightInfo.forEach((flight, index) => {
              flightInfoDiv.innerHTML += `
@@ -108,8 +114,10 @@ document.getElementById("submitButton").addEventListener("click", function() {
         return flightDaysArray;
     }
     
+    // Regular expression to match time in the format PT2H30M
+    // Extract hours and minutes from the matched regex groups
     function convertTime(time) {
-        // Regular expression to match time in the format PT2H30M
+        
         const timeRegex = /PT(\d+)H(\d+)M/;
         const match = time.match(timeRegex);
     
@@ -117,7 +125,7 @@ document.getElementById("submitButton").addEventListener("click", function() {
         let minutes = 0;
     
         if (match) {
-            // Extract hours and minutes from the matched regex groups
+            
             hours = parseInt(match[1]);
             minutes = parseInt(match[2]);
         }
@@ -125,8 +133,9 @@ document.getElementById("submitButton").addEventListener("click", function() {
         return `${hours} hours and ${minutes} minutes`;
     }
     
+    // Parse departure and arrival datetimes
     function convertTripInfo(totalTripTime, totalFlightTime, departureDateTime, arrivalDateTime) {
-        // Parse departure and arrival datetimes
+        
         const departureTime = new Date(departureDateTime);
         const arrivalTime = new Date(arrivalDateTime);
     
@@ -145,17 +154,18 @@ document.getElementById("submitButton").addEventListener("click", function() {
     
      //conversion of miles(mi) to kilometers(km)
     function milesToKilometers(miles) {
-        // 1 mile is approximately equal to 1.60934 kilometers
+        
         const kilometers = miles * 1.60934;
         return kilometers;
     }
 
+    // Extract the matched date and time
     function extractDateAndTime(dateTimeString) {
       const dateTimeRegex = /^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2})$/;
       const match = dateTimeString.match(dateTimeRegex);
   
       if (match) {
-          // Extract the matched date and time
+          
           const extractedDateTime = match[1];
           const [date, time] = extractedDateTime.split('T');
   

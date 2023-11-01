@@ -1198,13 +1198,15 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	/* Add additional styles as needed */
   }
   
+  /* This CSS code styles a container with flight information cards that have gradient backgrounds,
+  centered content, and a subtle shadow, ensuring they look good and adjust well on different screens. */
   #flights-container {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: center;
 	height: auto; /* Remove the fixed height to allow content to push it down */
-	margin-top: 350px; /* Adjust the margin as needed */
+	margin-top: 350px; 
   }
   
   .flight-info {
