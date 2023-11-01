@@ -7,20 +7,27 @@
 }
 
 /* -------------------------------------------- Font Styles -----------------------------------------------*/
+/* Editor: Jemma Niduaza*/
+/* Font styles for the application*/
+/* Font style for heading*/
 @font-face {
   font-family: bara;
   src: url(../Resources/BARABARA.otf);
 }
+/* Font style for subheading*/
 @font-face {
   font-family: mont-reg;
   src: url(../Resources/Montserrat-Regular.otf)
 }
+/* Font style for paragraph*/
 @font-face {
 	font-family: alt-med;
 	src: url(../Resources/MontserratAlternates-MediumItalic.otf)
 }
 
 /* ------------------------------------------- Navigation Bar ---------------------------------------------*/
+/* Editor: Jemma Niduaza*/
+/* This is the CSS for the Navigation Bar*/
 .navigation{
   height: 70px;
   background: linear-gradient(315deg, rgba(217,237,146,1) 5%, rgba(181,228,140,1) 15%, rgba(153,217,140,1) 27%, rgba(118,200,147,1) 39%, rgba(82,182,154,1) 51%, rgba(52,160,164,1) 61%, rgba(26,117,159,1) 73%, rgba(30,96,145,1) 86%, rgba(24,78,119,1) 100%);
@@ -156,8 +163,8 @@ nav .content .links {
 
 .locate-button {
   position: absolute;
-  bottom: 20px; /* Adjust the bottom value to set the distance from the bottom edge */
-  right: 20px; /* Adjust the right value to set the distance from the right edge */
+  bottom: 20px; 
+  right: 20px; 
   z-index: 1000;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -204,6 +211,8 @@ nav .content .links {
 
 
 /* --------------------------------------------------- Landing Page ----------------------------------------------------*/
+/* Editors: Kristine Lagarza, Marc Marron, and Jemma Niduaza*/
+/*This is the CSS for the Home/Landing Page*/
 .landing {
    background-image: 
     linear-gradient(0deg, rgba(0,0,0,0.5) 49%, rgba(201,201,201,0.5) 100%),
@@ -269,6 +278,8 @@ nav .content .links {
 
 
 /* ---------------------------------------------- About ------------------------------------------------*/
+/*Ediotrs: Kristine Lagarza & Jemma Niduaza*/
+/*This is the CSS for the About Page*/
 .about {
 	height: 1060px;
 	background: url(../Images/bg1.jpg);
@@ -339,6 +350,8 @@ nav .content .links {
 
 
 /* ------------------------------------------- Destination ---------------------------------------------*/
+/* Editor: Jemma Niduaza*/
+/* This is the CSS for the Destination page*/
 .destinations {
 	background: linear-gradient(180deg, rgba(242,232,207,1) 0%, rgba(26,117,159,1) 60%, rgba(31,76,106,1) 79%);
 }
@@ -421,6 +434,8 @@ nav .content .links {
 }
 
 /* ---------------------------------------------------- Map CSS ---------------------------------------------------*/
+/*Editor: Allan Avila*/
+/*This is the CSS for the Maps found in the Destinations*/
 html, body {
   height: 100%;
   margin: 0;
@@ -777,7 +792,6 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 
 /* layers control */
-
 .leaflet-control-layers {
 	box-shadow: 0 1px 5px rgba(0,0,0,0.4);
 	background: #fff;
@@ -837,7 +851,6 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 
 /* attribution and scale controls */
-
 .leaflet-container .leaflet-control-attribution {
 	background: #fff;
 	background: rgba(255, 255, 255, 0.8);
@@ -901,7 +914,6 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 
 /* popup */
-
 .leaflet-popup {
 	position: absolute;
 	text-align: center;
@@ -1033,7 +1045,6 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	}
 
 /* Directions */
-
 .leaflet-tooltip-bottom {
 	margin-top: 6px;
 }
@@ -1090,7 +1101,9 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 
 
-/* ------------------------------------------------------ Contact US --------------------------------------------------*/
+/* ------------------------------------------------------ Contact Us --------------------------------------------------*/
+/*Editors: Kristine Lagarza &  Jemma Niduaza*/
+/*This is the CSS for the Contact Page*/
 .contact {
 	height: 100vh;
 	background: url(../Images/bg3.jpg);
@@ -1154,7 +1167,10 @@ svg.leaflet-image-layer.leaflet-interactive path {
   padding: 10px 0; 
   font-weight: bold;
 }
+
 /* ---------------------------------------------------- Flight CSS ---------------------------------------------------*/
+/*Editors: Odeneil Belen & Marc Marron*/
+/*This is the CSS for the Available Flights Page*/
 #userInputForm {
 	max-width: 300px;
 	margin: 0 auto;
@@ -1233,7 +1249,8 @@ svg.leaflet-image-layer.leaflet-interactive path {
   }
   
 /* ---------------------------------------------------- Media Query ---------------------------------------------------*/
-/* Navigation Bar Query */
+/*Editor: Jemma Niduaza*/
+/*This makes the naviagtion bar responsive*/
 @media screen and (max-width: 1250px) {
   .navigation nav {
     max-width: 100%;

@@ -7,20 +7,27 @@
 }
 
 /* -------------------------------------------- Font Styles -----------------------------------------------*/
+/* Editor: Jemma Niduaza*/
+/* Font styles for the application*/
+/* Font style for heading*/
 @font-face {
   font-family: bara;
   src: url(../Resources/BARABARA.otf);
 }
+/* Font style for subheading*/
 @font-face {
   font-family: mont-reg;
   src: url(../Resources/Montserrat-Regular.otf)
 }
+/* Font style for paragraph*/
 @font-face {
   font-family: alt-med;
   src: url(../Resources/MontserratAlternates-MediumItalic.otf)
 }
 
 /* ------------------------------------------- Navigation Bar ---------------------------------------------*/
+/* Editor: Jemma Niduaza*/
+/* This is the CSS for the Navigation Bar*/
 .navigation {
   height: 70px;
   background: linear-gradient(315deg, rgba(217, 237, 146, 1) 5%, rgba(181, 228, 140, 1) 15%, rgba(153, 217, 140, 1) 27%, rgba(118, 200, 147, 1) 39%, rgba(82, 182, 154, 1) 51%, rgba(52, 160, 164, 1) 61%, rgba(26, 117, 159, 1) 73%, rgba(30, 96, 145, 1) 86%, rgba(24, 78, 119, 1) 100%);
@@ -131,9 +138,7 @@ nav .content .links {
 .locate-button {
   position: absolute;
   bottom: 20px;
-  /* Adjust the bottom value to set the distance from the bottom edge */
   right: 20px;
-  /* Adjust the right value to set the distance from the right edge */
   z-index: 1000;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -175,7 +180,9 @@ nav .content .links {
   cursor: pointer;
 }
 
-/* ------------------------------------------- Buttons ---------------------------------------------*/
+/* ------------------------------------------- Destinations ---------------------------------------------*/
+/* Editor: Kristine Lagarza & Jemma Niduaza*/
+/* This is the CSS for individual destinations*/
 .grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -245,7 +252,9 @@ nav .content .links {
   }
 }
 
-/* ------------------------------------------- Cloud9 ---------------------------------------------*/
+/* ------------------------------------------- Button---------------------------------------------*/
+/* Editor: Allan Avila & Jemma Niduaza*/
+/* This is the CSS for the View Destination Map found in the Destinations*/
 .dest-button-container {
   text-align: center;
   margin-top: 20px;
