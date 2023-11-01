@@ -11,7 +11,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
     var longitude = position.coords.longitude;
 
     L.marker([9.9446 , 126.1030]).addTo(map)
-        .bindPopup('Your Location').openPopup();
+        .bindPopup('Pacifico Beach').openPopup();
 
     map.setView([9.9446, 126.1030], 13); // Set map center to location
 }, function (error) {
