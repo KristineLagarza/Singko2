@@ -13,7 +13,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
     var longitude = position.coords.longitude;
 
     L.marker([9.5995, 125.9165]).addTo(map)
-        .bindPopup('Your Location').openPopup();
+        .bindPopup('Sohoton Cove').openPopup();
 
     map.setView([9.5995, 125.9165], 13); // Set map center to location
 }, function (error) {
