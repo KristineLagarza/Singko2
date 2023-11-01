@@ -11,7 +11,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
     var longitude = position.coords.longitude;
 
     L.marker([10.054680118176899, 126.07106715440239]).addTo(map)
-        .bindPopup('Your Location').openPopup();
+        .bindPopup('Alegria Beach').openPopup();
 
     map.setView([10.054680118176899, 126.07106715440239], 13); // Set map center to user's location
 }, function (error) {
