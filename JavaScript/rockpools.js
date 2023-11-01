@@ -13,7 +13,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
     var longitude = position.coords.longitude;
 
     L.marker([9.8765995, 126.1202359]).addTo(map)
-        .bindPopup('Rock Pools').openPopup();
+        .bindPopup('Magpupungko Rock Pools').openPopup();
 
     map.setView([9.8765995, 126.1202359], 13); // Set map center to location
 }, function (error) {
