@@ -13,7 +13,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
     L.marker([10.054680118176899, 126.07106715440239]).addTo(map)
         .bindPopup('Alegria Beach').openPopup();
 
-    map.setView([10.054680118176899, 126.07106715440239], 13); // Set map center to user's location
+    map.setView([10.054680118176899, 126.07106715440239], 13); // Set map center to location
 }, function (error) {
     console.error('Error getting geolocation:', error);
 });
