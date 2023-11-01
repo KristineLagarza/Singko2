@@ -1,3 +1,4 @@
+/* Editor: Marc Marron*/
 src="https://unpkg.com/leaflet/dist/leaflet.js"
 
 var map = L.map('map').setView([0, 0], 13);
