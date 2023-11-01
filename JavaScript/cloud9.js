@@ -11,7 +11,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
     var longitude = position.coords.longitude;
 
     L.marker([9.812262, 126.163485]).addTo(map)
-        .bindPopup('Your Location').openPopup();
+        .bindPopup('Cloud 9').openPopup();
 
     map.setView([9.812262, 126.163485], 13); // Set map center to user's location
 }, function (error) {
