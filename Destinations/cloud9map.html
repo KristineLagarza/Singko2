@@ -7,10 +7,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cloud 9 Map</title>
     <link rel="stylesheet" href="../Style/style.css">
+    <!-- Add this line to include the Leaflet-Search library -->
+    <script src="https://unpkg.com/leaflet-search/dist/leaflet-search.src.js" defer></script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js" defer></script>
     <script src="../JavaScript/cloud9.js" defer></script>
+    <!-- Include Leaflet CSS and JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" crossorigin="" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js" crossorigin="" defer></script>
+
+    <!-- Include Leaflet Routing Machine CSS and JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js" defer></script>
+
+    <!-- Include Mapbox GL JS -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js" defer></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet">
+
+    <!-- Include Mapbox Directions API -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.js" defer></script>
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.css" type="text/css">
 </head>
-<!--Editor:Allan-->
+<!--Editor:Allan and Kristine-->
 <body>
     <!--The Nav bar for the whole site-->
     <div class="navigation">
@@ -19,13 +36,16 @@
             <input type="checkbox" id="show-menu">
             <div class="content">
                 <div class="logo"><a href="#">SINGKO</a></div>
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search...">
+                </div>
                 <ul class="links">
                     <li><a href="../index.html">Home</a></li>
                     <li><a href="../about.html">About</a></li>
                     <li><a href="../destination.html">Destinations</a></li>
                     <li><a href="../contact.html">Contact</a></li>
                     <li><a href="../flightSearch.html">Available Flights</a></li>
-                    <li><a href ="../Destinations/cloud9.html">Back to Cloud 9</a></li>
+                    <li><a href="../Destinations/cloud9.html">Back to Cloud 9</a></li>
                 </ul>
             </div>
         </nav>
@@ -36,6 +56,7 @@
 </body>
 <!--Gets the script file to display the map API-->
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
     <script src="../JavaScript/cloud9.js"></script>
 
 </html>
