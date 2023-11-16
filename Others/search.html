@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/x-icon" href="../Images/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Singko Tours</title>
+    <link rel="stylesheet" href="../Style/style.css">
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js" defer></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js" defer></script>
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js" defer></script>
+    <script src="../Javascript/search.js" defer></script>
+</head>
+
+<body>
+    <!-- Editor: Jemma Niduaza-->
+    <!-- Navigation Bar -->
+    <div class="navigation">
+        <nav>
+            <input type="checkbox" id="show-search">
+            <input type="checkbox" id="show-menu">
+            <div class="content">
+                <div class="logo"><a href="#">SINGKO</a></div>
+                <ul class="links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../Others/about.html">About</a></li>
+                    <li><a href="../Others/contact.html">Contact</a></li>
+                </ul>
+                <!-- Add the search icon and link to search.html -->
+                <div class="search-icon">
+                    <a href="../Others/search.html"><img src="../Images/search.png" alt="Search"></a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Add the search form -->
+    <div class="search-form">
+        <form action="#" method="get" id="routeForm">
+            <label for="to">To:</label>
+            <input type="text" id="to" name="to" placeholder="Enter destination">
+            <label for="departureDate">Departure Date:</label>
+            <input type="date" id="departureDate" name="departureDate">
+            <input type="submit" value="Search">
+        </form>
+
+    <!-- Gets the script file for the destinations -->
+    <script src="../Javascript/search.js"></script>
+
+</body>
+
+</html>
