@@ -7,6 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Singko Tours</title>
     <link rel="stylesheet" href="../Style/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js" defer></script>
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js" defer></script>
     <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js" defer></script>
@@ -44,10 +51,14 @@
             <input type="date" id="departureDate" name="departureDate">
             <input type="submit" value="Search">
         </form>
+    </div>    
 
-    <!-- Gets the script file for the destinations -->
-    <script src="../Javascript/search.js"></script>
+    <div id="map" style="height: 700px;"></div>
 
+    <div id="place-of-interest">
+        <!-- flight info goes here -->
+    </div>
+    
 </body>
 
 </html>
