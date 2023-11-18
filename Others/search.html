@@ -44,16 +44,40 @@
 
     <!-- Add the search form -->
     <div class="search-form">
-        <form action="#" method="get" id="routeForm">
+        <form action="#" method="get" id="routeForm" onsubmit="validateForm(); return false;">
+            <label for="from">From:</label>
+            <!-- Add a select element for the "From" input -->
+            <select id="from" name="from">
+                <!-- Options will be dynamically added here -->
+            </select>
             <label for="to">To:</label>
-            <input type="text" id="to" name="to" placeholder="Enter destination">
+            <!-- Add a select element for the "To" input -->
+            <select id="to" name="to">
+                <!-- Options will be dynamically added here -->
+            </select>
             <label for="departureDate">Departure Date:</label>
-            <input type="date" id="departureDate" name="departureDate">
-            <input type="submit" value="Search">
+                <input type="date" id="departureDate" name="departureDate">
+            <input type="submit" value="Proceed">
         </form>
-    </div>    
+    </div>
 
-    <div id="map" style="height: 700px;"></div>
+    <div id="map1" style="height: 770px;"></div>
+
+    <div class="sort-form">
+        <form action="#" method="get" id="routeForm" onsubmit="return false;">
+            <label for="sort">Sort by:</label>
+            <select id="sort" name="sort">
+                <option value="price">Price</option>
+                <option value="duration">Duration</option>
+                <option value="bestValue">Best Value</option>
+                <option value="earliestOutboundDeparture">Earliest Outbound Departure</option>
+                <option value="earliestOutboundArrival">Earliest Outbound Arrival</option>
+                <option value="latestOutboundDeparture">Latest Outbound Departure</option>
+                <option value="latestOutboundArrival">Latest Outbound Arrival</option>
+            </select>
+            <input type="submit" value="Sort">
+        </form>
+    </div>
 
     <div id="place-of-interest">
         <!-- flight info goes here -->

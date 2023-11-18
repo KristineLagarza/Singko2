@@ -1184,6 +1184,14 @@ svg.leaflet-image-layer.leaflet-interactive path {
     font-size: 20px;
 }
 
+.sort-form {
+    background-color: beige;
+    display: flex;
+    align-items: center;
+    padding: 10px 10px;
+    font-size: 20px;
+}
+
 /* Style for the form elements */
 #routeForm {
     display: flex;
