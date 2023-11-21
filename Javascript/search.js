@@ -1,28 +1,14 @@
 // search.js
+var localAirportLat;
+var localAirportLong;
+var nearAP;
+var firstIATACode;
+var secondIATACode;
+var departureDateValue;
+var placeValue;
+
 document.addEventListener('DOMContentLoaded', function () {
-    var map = L.map('map1');
-    var destinationMarker;
-    var destinationLongitude;
-    var destinationLatitude;
-
-    // Create a warning div
-    var warningDiv = document.createElement('div');
-    warningDiv.id = 'warning';
-    warningDiv.style.position = 'absolute';
-    warningDiv.style.top = '10px';
-    warningDiv.style.left = '10px';
-    warningDiv.style.backgroundColor = 'rgba(255, 0, 0, 0.7)';
-    warningDiv.style.color = '#fff';
-    warningDiv.style.padding = '10px';
-    warningDiv.style.display = 'none'; // Initially hide the warning
-
-    document.body.appendChild(warningDiv);
-
-    // Function to update the warning message
-    function updateWarning(message) {
-        warningDiv.textContent = message;
-        warningDiv.style.display = 'block';
-    }
+    var map = L.map('map');
 
     // Check if the browser supports geolocation
     if ('geolocation' in navigator) {
@@ -30,53 +16,27 @@ document.addEventListener('DOMContentLoaded', function () {
             // If geolocation is successful, center the map on the user's location
             map.setView([position.coords.latitude, position.coords.longitude], 13);
 
-            // Add a marker at the user's location and use it as the current position marker
-            var currentPosition = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map)
+            // Add a marker at the user's location
+            L.marker([position.coords.latitude, position.coords.longitude]).addTo(map)
                 .bindPopup('Your current location');
 
-            // Add a click event to the map to set the destination marker and route
-            map.on('click', function (e) {
-                // Remove the warning when the user clicks on the map
-                warningDiv.style.display = 'none';
-
-                // Remove the previous destination marker if it exists
-                if (destinationMarker) {
-                    map.removeLayer(destinationMarker);
-                }
-
-                // Remove existing polylines
-                map.eachLayer(function (layer) {
-                    if (layer instanceof L.Polyline) {
-                        map.removeLayer(layer);
-                    }
+            getNearestAirport(position.coords.latitude, position.coords.longitude).then(airportCodes => {
+                getMetroCode(airportCodes).then(matchingMetroCodes => {
+                    firstIATACode = matchingMetroCodes;
+                    // Get latitude and longitude for matching metro codes
+                    extractLatLongByAirportCode(matchingMetroCodes, nearAP).then(latLongArray => {
+                        latLongArray.forEach(coords => {
+                            L.marker([coords.latitude, coords.longitude]).addTo(map)
+                                .bindPopup('Airport/Metro Location');
+                                
+                        });
+                        // Draw a route along the road
+                        drawRoute(position.coords.latitude, position.coords.longitude, latLongArray[0].latitude, latLongArray[0].longitude);
+                    });
                 });
+            });        
 
-                // Add a new destination marker at the clicked location
-                destinationMarker = L.marker(e.latlng).addTo(map)
-                    .bindPopup('Your destination')
-                    .openPopup(); // Open the popup immediately
-
-                console.log(destinationMarker);
-
-                destinationLatitude = e.latlng.lat;
-                destinationLongitude = e.latlng.lng;
-
-                // Ask for confirmation before adding the route
-                // var confirmRoute = window.confirm('Do you want to proceed with the route?');
-
-                // Add a polyline from the current position to the destination
-                var latlngs = [
-                    [currentPosition.getLatLng().lat, currentPosition.getLatLng().lng],
-                    [destinationLatitude, destinationLongitude]
-                ];
-                var polyline = L.polyline(latlngs, { color: 'blue' }).addTo(map);
-
-                geocoding(position.coords.latitude, position.coords.longitude, destinationLatitude, destinationLongitude);
-
-            });
         }, function (error) {
-            // Show a warning if there's an error getting geolocation
-            updateWarning('Error getting geolocation. Please choose a location on the map.');
             console.error('Error getting geolocation:', error.message);
             // If there's an error, fallback to a default location
             map.setView([10.3098, 123.8938], 13);
@@ -89,21 +49,217 @@ document.addEventListener('DOMContentLoaded', function () {
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors'
     }).addTo(map);
+
+    function drawRoute(startLat, startLng, destLat, destLng) {
+        L.Routing.control({
+            waypoints: [
+                L.latLng(startLat, startLng), 
+                L.latLng(destLat, destLng)   
+            ],
+        }).addTo(map);
+    }
+
+    var routeForm = document.getElementById('routeForm');
+    var secondRouteControl; // Declare a variable to store the reference to the second routing control
+
+    routeForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    // Clear only the second routing control
+    if (secondRouteControl) {
+        map.removeControl(secondRouteControl);
+        secondRouteControl = null; // Reset the variable
+    }
+
+
+    var placeInput = document.getElementById('place');
+    placeValue = placeInput.value;
+    var departureDateInput = document.getElementById('departureDate');
+    departureDateValue = departureDateInput.value;
+
+    forwardGeocoding(placeValue)
+        .then(([lat, lon]) => {
+            getNearestAirport(lat, lon).then(airportCodes => {
+                getMetroCode(airportCodes).then(matchingMetroCodes => {
+                    secondIATACode = matchingMetroCodes;
+                    extractLatLongByAirportCode(matchingMetroCodes, nearAP).then(latLongArray => {
+                        latLongArray.forEach(coords => {
+                            L.marker([coords.latitude, coords.longitude]).addTo(map)
+                                .bindPopup('Airport/Metro Location');
+                        });
+
+                        // Draw the first route (A to B)
+                        L.Routing.control({
+                            waypoints: [
+                                L.latLng(lat, lon),
+                                L.latLng(latLongArray[0].latitude, latLongArray[0].longitude)
+                            ]
+                        }).addTo(map);
+
+                        // Draw the second route (B to A) and store the reference
+                        secondRouteControl = L.Routing.control({
+                            waypoints: [
+                                L.latLng(latLongArray[0].latitude, latLongArray[0].longitude),
+                                L.latLng(lat, lon)
+                            ]
+                        }).addTo(map);
+
+                        if (placeValue !== '' && departureDateValue !== '') {
+                            getFlights(firstIATACode, secondIATACode, departureDateValue);
+                        } else {
+                            alert('Please enter both place and departure date.');
+                        }
+                    });
+                });
+            });
+        })
+        .catch(error => {
+            console.error('There was an error:', error);
+        });
+    });
 });
 
 
+/* -------------------------------------- Neareset Airport / IATA Code ----------------------------------------------------*/
 
-
-
-// Geocoding
-// Find address or place by latitude and longitude
-function geocoding(currentLat, currentLng, destinationLat, destinationLng) {
-    // Geocoding for current position
-    const currentUrl = `https://forward-reverse-geocoding.p.rapidapi.com/v1/reverse?lat=${currentLat}&lon=${currentLng}&accept-language=en&polygon_threshold=0.0`;
+// Returns the nearest airports for a given latitude and longitude
+function getNearestAirport(latitude, longitude) {
+    const url = `https://timetable-lookup.p.rapidapi.com/airports/nearest/${latitude}/${longitude}/`;
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': 'd2daefb44bmshdd84179ee5aa9dfp191197jsn5bd00a25ab87',
+        'X-RapidAPI-Host': 'timetable-lookup.p.rapidapi.com'
+      }
+    };
     
-    // Geocoding for destination
-    const destinationUrl = `https://forward-reverse-geocoding.p.rapidapi.com/v1/reverse?lat=${destinationLat}&lon=${destinationLng}&accept-language=en&polygon_threshold=0.0`;
+    return fetch(url, options)
+    .then(response => response.text())
+    .then(xmlString => {
+        nearAP = xmlString;
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlString, 'application/xml');
+        const airports = xmlDoc.getElementsByTagName('Airport');
+        const IATACodes = [];
 
+        for (let i = 0; i < airports.length; i++) {
+            const IATACode = airports[i].getAttribute('IATACode');
+            IATACodes.push(IATACode);
+        }
+        return IATACodes;
+    })
+    .catch(error => {
+        console.error('Airport Search Error:', error);
+        return [];
+    });
+  }
+
+/* -------------------------------------- Metro IATA codes ----------------------------------------------------*/
+
+// Get the IATA Code of the City
+async function getMetroCode(airportCodes) {
+    
+    await sleep(1500);
+    const url = 'https://timetable-lookup.p.rapidapi.com/airports/metros/';
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': 'd2daefb44bmshdd84179ee5aa9dfp191197jsn5bd00a25ab87',
+            'X-RapidAPI-Host': 'timetable-lookup.p.rapidapi.com'
+        }
+    };
+
+    return fetch(url, options)
+        .then(response => response.text())
+        .then(xmlString => {
+            
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
+
+            // Extract IATACodes from Metro
+            const metros = xmlDoc.getElementsByTagName('Metro');
+
+            for (let i = 0; i < metros.length; i++) {
+                const IATACode = metros[i].getAttribute('IATACode');
+
+                if (airportCodes.includes(IATACode)) {
+                    return IATACode; // Return the first matching code
+                }
+            }
+
+            return null; 
+        })
+        .catch(error => {
+            console.error('Metro Search Error:', error);
+            return null;
+        });
+}
+  
+// Get the name of the City
+    function getMetroName(city){
+        const url = 'https://timetable-lookup.p.rapidapi.com/airports/metros/';
+        const options = {
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': 'd2daefb44bmshdd84179ee5aa9dfp191197jsn5bd00a25ab87',
+                'X-RapidAPI-Host': 'timetable-lookup.p.rapidapi.com'
+            }
+    };
+
+    fetch(url, options)
+    .then(response => response.text())
+    .then(xmlString => {
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
+
+        // Extract Name from Metro
+        const metros = xmlDoc.getElementsByTagName('Metro');
+        for (let i = 0; i < metros.length; i++) {
+        const name = metros[i].getAttribute('Name');
+        }
+    })
+    .catch(error => {
+        console.error('Airport Search Error:', error);
+    });
+  }
+  
+/* -------------------------------------- GEOCODING ----------------------------------------------------*/
+
+  //Turn an address into latitude and longitude (e.g. to display on a map) by schematic input.
+    function forwardGeocoding(city) {
+        const url = `https://forward-reverse-geocoding.p.rapidapi.com/v1/forward?format=xml&city=${city}&accept-language=en&polygon_threshold=0.0`;
+        const options = {
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': '652e1212b4msh02c7ed11051a093p1e77e2jsn34016fc1b090',
+                'X-RapidAPI-Host': 'forward-reverse-geocoding.p.rapidapi.com'
+            }
+        };
+    
+        return fetch(url, options)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok.');
+                }
+                return response.text();
+            })
+            .then(xmlString => {
+                // Parse the XML string to an XML document
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
+    
+                // Extract latitude and longitude
+                const lat = xmlDoc.querySelector('place').getAttribute('lat');
+                const lon = xmlDoc.querySelector('place').getAttribute('lon');
+    
+                // Return the latitude and longitude as an array
+                return [lat, lon];
+            });
+    }    
+
+  // Find address or place by latitude and longitude
+  function reverseGeocoding(latitude, longitude){
+    const url = `https://forward-reverse-geocoding.p.rapidapi.com/v1/reverse?lat=${latitude}&lon=${longitude}&accept-language=en&polygon_threshold=0.0`;
     const options = {
         method: 'GET',
         headers: {
@@ -112,229 +268,88 @@ function geocoding(currentLat, currentLng, destinationLat, destinationLng) {
         }
     };
 
-
-    
-    // Geocode for current position
-    const currentGeocodingPromise = fetch(currentUrl, options)
-        .then(response => response.json())
+    fetch(url, options)
+        .then(response => response.text())
         .then(result => {
-            const currentCountry = result.address.country_code;
-            console.log('Current Position Country:', currentCountry);
-            return currentCountry;
+            console.log(result);
         })
         .catch(error => {
-            console.error('Current Position Geocoding Error:', error);
-            throw error;
+            console.error(error);
         });
+  }
 
-    // Geocode for destination
-    const destinationGeocodingPromise = fetch(destinationUrl, options)
-        .then(response => response.json())
-        .then(result => {
-            const destinationCountry = result.address.country_code;
-            console.log('Destination Country:', destinationCountry);
-            return destinationCountry;
-        })
-        .catch(error => {
-            console.error('Destination Geocoding Error:', error);
-            throw error;
-        });
+  async function extractLatLongByAirportCode(code, xmlString) {
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
+    const airports = xmlDoc.getElementsByTagName('Airport');
+    const latLongArray = [];
 
-    Promise.all([currentGeocodingPromise, destinationGeocodingPromise])
-        .then(([currentCountry, destinationCountry]) => {
-            return performSearchWithDelay(currentCountry, destinationCountry);
-        })
-        .catch(error => {
-            console.error('Error in geocoding promises:', error);
-        });
-}
+    for (let i = 0; i < airports.length; i++) {
+        const airportCode = airports[i].getAttribute('IATACode');
 
-function populateDropdown(selectElement, options) {
-    // Clear existing options
-    selectElement.innerHTML = '';
+        if (airportCode === code) {
+            const latitude = airports[i].getAttribute('Latitude');
+            const longitude = airports[i].getAttribute('Longitude');
 
-    // Add new options
-    options.forEach(option => {
-        const optionElement = document.createElement('option');
-        
-        // Check if the option is an object with 'value' and 'text' properties
-        if (typeof option === 'object' && 'value' in option && 'text' in option) {
-            optionElement.value = option.value;
-            optionElement.textContent = option.text;
-        } else {
-            // If not, assume it's a simple string and use it for both value and text
-            optionElement.value = option;
-            optionElement.textContent = option;
+            latLongArray.push({ latitude, longitude });
+            break;
         }
+    }
 
-        selectElement.appendChild(optionElement);
-    });
+    return latLongArray;
 }
 
-let fromDropdownPopulated = false;
-
-function searchAirportByLocation(location, callback) {
-    const url = `https://timetable-lookup.p.rapidapi.com/airports/countries/${location}/`;
-
+function getFlights(src, dest, departureDate) {
+    const url = `https://tripadvisor16.p.rapidapi.com/api/v1/flights/searchFlights?sourceAirportCode=${src}&destinationAirportCode=${dest}&date=${departureDate}&itineraryType=ONE_WAY&sortOrder=PRICE&numAdults=1&numSeniors=0&classOfService=ECONOMY&currencyCode=USD`;
     const options = {
         method: 'GET',
         headers: {
             'X-RapidAPI-Key': 'cbbf20c4eemsha75a0fa1baeb91cp1817fajsncfeb7ffc3bfe',
-            'X-RapidAPI-Host': 'timetable-lookup.p.rapidapi.com',
-        },
-    };
-
-    
-
-    fetch(url, options)
-        .then(response => response.text())
-        .then(result => {
-            const parser = new DOMParser();
-            const xmlDoc = parser.parseFromString(result, 'text/xml');
-            const airports = xmlDoc.getElementsByTagName('Airport');
-            const airportData = Array.from(airports).map(airport => ({
-                iataCode: airport.getAttribute('IATACode'),
-                name: airport.getAttribute('Name')
-            }));
-            callback(airportData);
-
-            // Populate the "From" and "To" dropdowns with both iataCode and name
-            const fromDropdown = document.getElementById('from');
-            const toDropdown = document.getElementById('to');
-
-            const dropdownOptions = airportData.map(airport => ({
-                value: airport.iataCode,
-                text: `${airport.iataCode} - ${airport.name}`
-            }));
-
-            if (!fromDropdownPopulated) {
-                populateDropdown(fromDropdown, dropdownOptions);
-                fromDropdownPopulated = true; // Set the flag to true after populating the dropdown
-            }
-            populateDropdown(toDropdown, dropdownOptions);
-        })
-        .catch(error => {
-            console.error('Airport Search Error:', error);
-        });
-}
-
-// Function for current location
-function searchCurrentAirport(currentLocation) {
-    searchAirportByLocation(currentLocation, (result) => {
-        const iataCodes = result.map(airport => airport.iataCode);
-        const names = result.map(airport => airport.name);
-
-        console.log('Current Position Airport IATACodes:', iataCodes);
-        console.log('Current Position Airport Names:', names);
-    });
-}
-
-// Function for destination location
-function searchDestinationAirport(destinationLocation) {
-    searchAirportByLocation(destinationLocation, (result) => {
-        const iataCodes = result.map(airport => airport.iataCode);
-        const names = result.map(airport => airport.name);
-
-        console.log('Destination Airport IATACodes:', iataCodes);
-        console.log('Destination Airport Names:', names);
-    });
-}
-
-
-function searchFlights(source, destination, departureDate) {
-    var srcIATACode = source.value.split(' ')[0];
-    var destIATACode = destination.value.split(' ')[0];
-
-    const url = `https://tripadvisor16.p.rapidapi.com/api/v1/flights/searchFlights?sourceAirportCode=${srcIATACode}&destinationAirportCode=${destIATACode}&date=${departureDate}&itineraryType=ONE_WAY&sortOrder=PRICE&numAdults=1&numSeniors=0&classOfService=ECONOMY&currencyCode=PHP`;
-
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': '126a99cce3msh20cdc81fe3b382bp104ddajsnab2e44ce7771',
             'X-RapidAPI-Host': 'tripadvisor16.p.rapidapi.com'
         }
     };
 
     fetch(url, options)
-    .then(response => response.json())
-    .then(result => {
-        console.log(result);
-      var flights = result.data.flights;
-      var flightDetailsHtml = ``;
-  
-      flightDetailsHtml += `<p>${flights.length} Flights</p>`;
-  
-      flights.forEach((flight, index) => {
+    .then(response => response.json()) // Parse response as JSON
+    .then(data => {
+        // Extract necessary information
+        const flights = data.data.flights;
 
+        // Display the extracted flight information
+        const flightInfoContainer = document.getElementById('place-of-interest');
+        flightInfoContainer.innerHTML = '<h2>Flight Information</h2>';
 
-        const amount = flight.purchaseLinks[0].totalPrice.text;
+        flights.forEach((flight, index) => {
+            const totalPrice = flight.purchaseLinks[0].totalPrice;
+            const flightNumber = flight.segments[0].legs[0].flightNumber;
+            const leg = flight.segments[0].legs[0];
 
-        flightDetailsHtml += `<div class="flight-details" id="flight-${index + 1}">`;
-        flightDetailsHtml += `<h3>${flight.segments[0].legs[0].departureDateTime.text} -> ${flight.segments[0].legs[0].arrivalDateTime.text}</h3>`;
-        flightDetailsHtml += `<h4>${source.text} -> ${destination.text}</h4>`;
-        flightDetailsHtml += `<p>Duration: ${flight.segments[0].layovers[0].durationInMinutes.text} Minutes</p>`;
-  
-        // Accessing purchaseLinks array
-        flightDetailsHtml += `<p>Purchase Links:</p>`;
-        if (Array.isArray(flight.purchaseLinks)) {
-          flight.purchaseLinks.forEach((purchaseLink, purchaseIndex) => {
-            flightDetailsHtml += `<p class="purchase-link">Purchase Link ${purchaseIndex + 1}: ${purchaseLink.text}</p>`;
-          });
-        } else {
-          flightDetailsHtml += `<p class="purchase-link">No purchase links available</p>`;
-        }
-  
-        flightDetailsHtml += `</div>`;
-        flightDetailsHtml += `<hr>`;
-      });
-  
-      // Update the "place-of-interest" div with the generated flight details HTML
-      document.getElementById('place-of-interest').innerHTML = flightDetailsHtml;
+            // Create a container for each flight
+            const flightContainer = document.createElement('div');
+            flightContainer.classList.add('flight-container');
+
+            flightContainer.innerHTML = `
+                <h3>Flight ${index + 1}</h3>
+                <p>Total Price: PHP ${totalPrice}</p>
+                <p>Flight Number: ${flightNumber}</p>
+                <p>Origin: ${leg.originStationCode}</p>
+                <p>Destination: ${leg.destinationStationCode}</p>
+                <p>Departure Time: ${leg.departureDateTime}</p>
+                <p>Arrival Time: ${leg.arrivalDateTime}</p>
+                <p>Airlines: ${leg.marketingCarrier.displayName}</p>
+            `;
+
+            // Append the flight container to the main container
+            flightInfoContainer.appendChild(flightContainer);
+        });
     })
     .catch(error => {
-      console.error(error);
+        console.error(error);
     });
-  
 }
 
 
-function sleep(ms) {
+
+  function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-
-async function performSearchWithDelay(currentCountry, destinationCountry) {
-
-    searchCurrentAirport(currentCountry);
-    await sleep(1500); // Sleep for another 1000 milliseconds
-    searchDestinationAirport(destinationCountry);
-}
-
-function validateForm() {
-    // Check if the "From" and "To" dropdowns have options
-    var fromDropdown = document.getElementById('from');
-    var toDropdown = document.getElementById('to');
-    var departureDateInput = document.getElementById('departureDate');
-
-    if (fromDropdown.options.length === 0 || toDropdown.options.length === 0) {
-        alert('Please select first a location in the map.');
-        return false;
-    }
-
-    // Get the selected values from the dropdowns
-    var selectedFrom = fromDropdown.options[fromDropdown.selectedIndex]; 
-    var selectedTo = toDropdown.options[toDropdown.selectedIndex]; 
-
-    // Get the value of the departure date
-    var departureDate = departureDateInput.value;
-
-    // Call searchFlights function with selected values
-    searchFlights(selectedFrom, selectedTo, departureDate);
-
-    return true;
-}
-
-function minutesToHHMM(minutes) {
-    const hours = Math.floor(minutes / 60);
-    const remainingMinutes = minutes % 60;
-    return `${hours}H ${remainingMinutes}M`;
-  }

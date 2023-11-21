@@ -9,19 +9,13 @@
     <link rel="stylesheet" href="../Style/style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
-    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js" defer></script>
-    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js" defer></script>
-    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js" defer></script>
     <script src="../Javascript/search.js" defer></script>
 </head>
 
 <body>
-    <!-- Editor: Jemma Niduaza-->
+    <!-- Editor: Jemma Niduaza & Odeneil Belen-->
     <!-- Navigation Bar -->
     <div class="navigation">
         <nav>
@@ -44,45 +38,20 @@
 
     <!-- Add the search form -->
     <div class="search-form">
-        <form action="#" method="get" id="routeForm" onsubmit="validateForm(); return false;">
-            <label for="from">From:</label>
-            <!-- Add a select element for the "From" input -->
-            <select id="from" name="from">
-                <!-- Options will be dynamically added here -->
-            </select>
-            <label for="to">To:</label>
-            <!-- Add a select element for the "To" input -->
-            <select id="to" name="to">
-                <!-- Options will be dynamically added here -->
-            </select>
+        <form action="#" method="get" id="routeForm">
+            <label for="place">Place to go: </label>
+            <input type="text" id="place" name="place" placeholder="Enter City">
             <label for="departureDate">Departure Date:</label>
-                <input type="date" id="departureDate" name="departureDate">
-            <input type="submit" value="Proceed">
+            <input type="date" id="departureDate" name="departureDate">
+            <input type="submit" value="Search">
         </form>
     </div>
 
-    <div id="map1" style="height: 770px;"></div>
-
-    <div class="sort-form">
-        <form action="#" method="get" id="routeForm" onsubmit="return false;">
-            <label for="sort">Sort by:</label>
-            <select id="sort" name="sort">
-                <option value="price">Price</option>
-                <option value="duration">Duration</option>
-                <option value="bestValue">Best Value</option>
-                <option value="earliestOutboundDeparture">Earliest Outbound Departure</option>
-                <option value="earliestOutboundArrival">Earliest Outbound Arrival</option>
-                <option value="latestOutboundDeparture">Latest Outbound Departure</option>
-                <option value="latestOutboundArrival">Latest Outbound Arrival</option>
-            </select>
-            <input type="submit" value="Sort">
-        </form>
-    </div>
+    <div id="map" style="height: 770px;"></div>
 
     <div id="place-of-interest">
         <!-- flight info goes here -->
     </div>
-    
 </body>
 
 </html>

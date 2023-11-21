@@ -1176,6 +1176,38 @@ svg.leaflet-image-layer.leaflet-interactive path {
 /* ------------------------------------------------------ Search  ------------------------------------------------------*/
 /*Editors: Marc Marron, Odeneil Belen, and Jemma Niduaza*/
 /* Style for the search form */
+.flight-container {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.flight-container:hover {
+    transform: scale(1.05);
+}
+
+.flight-container h3 {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px;
+    margin: 0;
+    border-bottom: 1px solid #2980b9;
+    border-radius: 8px 8px 0 0;
+}
+
+.flight-container p {
+    padding: 10px;
+    margin: 0;
+    color: #333;
+}
+
+.flight-container p:first-child {
+    border-bottom: 1px solid #ccc;
+}
+
 .search-form {
     background-color: beige;
     display: flex;
