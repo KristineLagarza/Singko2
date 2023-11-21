@@ -128,7 +128,7 @@ function getNearestAirport(latitude, longitude) {
     const options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': 'd2daefb44bmshdd84179ee5aa9dfp191197jsn5bd00a25ab87',
+        'X-RapidAPI-Key': 'bec3f6579dmshed7a99e8de6aab5p1a23bejsnc1b1f3d4ce26',
         'X-RapidAPI-Host': 'timetable-lookup.p.rapidapi.com'
       }
     };
@@ -164,7 +164,7 @@ async function getMetroCode(airportCodes) {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': 'd2daefb44bmshdd84179ee5aa9dfp191197jsn5bd00a25ab87',
+            'X-RapidAPI-Key': 'bec3f6579dmshed7a99e8de6aab5p1a23bejsnc1b1f3d4ce26',
             'X-RapidAPI-Host': 'timetable-lookup.p.rapidapi.com'
         }
     };
@@ -201,7 +201,7 @@ async function getMetroCode(airportCodes) {
         const options = {
             method: 'GET',
             headers: {
-                'X-RapidAPI-Key': 'd2daefb44bmshdd84179ee5aa9dfp191197jsn5bd00a25ab87',
+                'X-RapidAPI-Key': 'bec3f6579dmshed7a99e8de6aab5p1a23bejsnc1b1f3d4ce26',
                 'X-RapidAPI-Host': 'timetable-lookup.p.rapidapi.com'
             }
     };
@@ -231,7 +231,7 @@ async function getMetroCode(airportCodes) {
         const options = {
             method: 'GET',
             headers: {
-                'X-RapidAPI-Key': '652e1212b4msh02c7ed11051a093p1e77e2jsn34016fc1b090',
+                'X-RapidAPI-Key': 'bec3f6579dmshed7a99e8de6aab5p1a23bejsnc1b1f3d4ce26',
                 'X-RapidAPI-Host': 'forward-reverse-geocoding.p.rapidapi.com'
             }
         };
@@ -263,7 +263,7 @@ async function getMetroCode(airportCodes) {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '652e1212b4msh02c7ed11051a093p1e77e2jsn34016fc1b090',
+            'X-RapidAPI-Key': 'bec3f6579dmshed7a99e8de6aab5p1a23bejsnc1b1f3d4ce26',
             'X-RapidAPI-Host': 'forward-reverse-geocoding.p.rapidapi.com'
         }
     };
@@ -304,7 +304,7 @@ function getFlights(src, dest, departureDate) {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': 'cbbf20c4eemsha75a0fa1baeb91cp1817fajsncfeb7ffc3bfe',
+            'X-RapidAPI-Key': 'bec3f6579dmshed7a99e8de6aab5p1a23bejsnc1b1f3d4ce26',
             'X-RapidAPI-Host': 'tripadvisor16.p.rapidapi.com'
         }
     };
