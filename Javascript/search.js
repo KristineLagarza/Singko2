@@ -128,7 +128,7 @@ function getNearestAirport(latitude, longitude) {
     const options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': 'bec3f6579dmshed7a99e8de6aab5p1a23bejsnc1b1f3d4ce26',
+        'X-RapidAPI-Key': 'b30a53b9edmshe2b77a3035e15ffp1d8ed3jsne60fe8d80e2c',
         'X-RapidAPI-Host': 'timetable-lookup.p.rapidapi.com'
       }
     };
@@ -164,7 +164,7 @@ async function getMetroCode(airportCodes) {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': 'bec3f6579dmshed7a99e8de6aab5p1a23bejsnc1b1f3d4ce26',
+            'X-RapidAPI-Key': 'b30a53b9edmshe2b77a3035e15ffp1d8ed3jsne60fe8d80e2c',
             'X-RapidAPI-Host': 'timetable-lookup.p.rapidapi.com'
         }
     };
