@@ -50,75 +50,83 @@ document.addEventListener('DOMContentLoaded', function () {
         attribution: '© OpenStreetMap contributors'
     }).addTo(map);
 
-    function drawRoute(startLat, startLng, destLat, destLng) {
-        L.Routing.control({
-            waypoints: [
-                L.latLng(startLat, startLng), 
-                L.latLng(destLat, destLng)   
-            ],
+    function drawRoute(startLat, startLng, destLat, destLng, color) {
+        const waypoints = [
+            L.latLng(startLat, startLng),
+            L.latLng(destLat, destLng)
+        ];
+    
+        const route = L.Routing.control({
+            waypoints: waypoints,
         }).addTo(map);
+    
+        // Draw a broken line
+        const pattern = {
+            color: color,
+            weight: 2,
+            opacity: 0.5,
+            dashArray: '10, 10'
+        };
+    
+        const brokenLinePoints = [
+            [startLat, startLng],
+            [destLat, destLng]
+        ];
+    
+        L.polyline(brokenLinePoints, pattern).addTo(map);
+    
+        return route;
     }
-
+    
     var routeForm = document.getElementById('routeForm');
-    var secondRouteControl; // Declare a variable to store the reference to the second routing control
-
+    var firstRouteControl;
+    var secondRouteControl;
+    
     routeForm.addEventListener('submit', function (event) {
-    event.preventDefault();
-
-    // Clear only the second routing control
-    if (secondRouteControl) {
-        map.removeControl(secondRouteControl);
-        secondRouteControl = null; // Reset the variable
-    }
-
-
-    var placeInput = document.getElementById('place');
-    placeValue = placeInput.value;
-    var departureDateInput = document.getElementById('departureDate');
-    departureDateValue = departureDateInput.value;
-
-    forwardGeocoding(placeValue)
-        .then(([lat, lon]) => {
-            getNearestAirport(lat, lon).then(airportCodes => {
-                getMetroCode(airportCodes).then(matchingMetroCodes => {
-                    secondIATACode = matchingMetroCodes;
-                    extractLatLongByAirportCode(matchingMetroCodes, nearAP).then(latLongArray => {
-                        latLongArray.forEach(coords => {
-                            L.marker([coords.latitude, coords.longitude]).addTo(map)
-                                .bindPopup('Airport/Metro Location');
+        event.preventDefault();
+    
+        // Clear existing controls
+        if (firstRouteControl) {
+            map.removeControl(firstRouteControl);
+        }
+        if (secondRouteControl) {
+            map.removeControl(secondRouteControl);
+        }
+    
+        var placeInput = document.getElementById('place');
+        placeValue = placeInput.value;
+        var departureDateInput = document.getElementById('departureDate');
+        departureDateValue = departureDateInput.value;
+    
+        forwardGeocoding(placeValue)
+            .then(([lat, lon]) => {
+                getNearestAirport(lat, lon).then(airportCodes => {
+                    getMetroCode(airportCodes).then(matchingMetroCodes => {
+                        secondIATACode = matchingMetroCodes;
+                        extractLatLongByAirportCode(matchingMetroCodes, nearAP).then(latLongArray => {
+                            latLongArray.forEach(coords => {
+                                L.marker([coords.latitude, coords.longitude]).addTo(map)
+                                    .bindPopup('Airport/Metro Location');
+                            });
+    
+                            // Draw the broken line from the first airport to the second airport
+                            drawRoute(lat, lon, latLongArray[0].latitude, latLongArray[0].longitude, 'blue');
+    
+                            if (placeValue !== '' && departureDateValue !== '') {
+                                getFlights(firstIATACode, secondIATACode, departureDateValue);
+                            } else {
+                                alert('Please enter both place and departure date.');
+                            }
                         });
-
-                        // Draw the first route (A to B)
-                        L.Routing.control({
-                            waypoints: [
-                                L.latLng(lat, lon),
-                                L.latLng(latLongArray[0].latitude, latLongArray[0].longitude)
-                            ]
-                        }).addTo(map);
-
-                        // Draw the second route (B to A) and store the reference
-                        secondRouteControl = L.Routing.control({
-                            waypoints: [
-                                L.latLng(latLongArray[0].latitude, latLongArray[0].longitude),
-                                L.latLng(lat, lon)
-                            ]
-                        }).addTo(map);
-
-                        if (placeValue !== '' && departureDateValue !== '') {
-                            getFlights(firstIATACode, secondIATACode, departureDateValue);
-                        } else {
-                            alert('Please enter both place and departure date.');
-                        }
                     });
                 });
+            })
+            .catch(error => {
+                console.error('There was an error:', error);
             });
-        })
-        .catch(error => {
-            console.error('There was an error:', error);
-        });
     });
+    
 });
-
 
 /* -------------------------------------- Neareset Airport / IATA Code ----------------------------------------------------*/
 
@@ -128,7 +136,7 @@ function getNearestAirport(latitude, longitude) {
     const options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': 'b30a53b9edmshe2b77a3035e15ffp1d8ed3jsne60fe8d80e2c',
+        'X-RapidAPI-Key': 'bda103751amshf2c573250029a10p141eb3jsn966f1108f2f6',
         'X-RapidAPI-Host': 'timetable-lookup.p.rapidapi.com'
       }
     };
@@ -164,7 +172,7 @@ async function getMetroCode(airportCodes) {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': 'b30a53b9edmshe2b77a3035e15ffp1d8ed3jsne60fe8d80e2c',
+            'X-RapidAPI-Key': 'bda103751amshf2c573250029a10p141eb3jsn966f1108f2f6',
             'X-RapidAPI-Host': 'timetable-lookup.p.rapidapi.com'
         }
     };
@@ -201,7 +209,7 @@ async function getMetroCode(airportCodes) {
         const options = {
             method: 'GET',
             headers: {
-                'X-RapidAPI-Key': 'bec3f6579dmshed7a99e8de6aab5p1a23bejsnc1b1f3d4ce26',
+                'X-RapidAPI-Key': 'bda103751amshf2c573250029a10p141eb3jsn966f1108f2f6',
                 'X-RapidAPI-Host': 'timetable-lookup.p.rapidapi.com'
             }
     };
@@ -222,6 +230,7 @@ async function getMetroCode(airportCodes) {
         console.error('Airport Search Error:', error);
     });
   }
+
   
 /* -------------------------------------- GEOCODING ----------------------------------------------------*/
 
